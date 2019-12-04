@@ -1,0 +1,17 @@
+.form-margin-top{
+  margin-top: 10px;    
+}
+
+.form-margin-right{
+  margin-right: 10px;
+} 
+
+.form-margin-left{
+  margin-left: 10px;
+}
+
+.input-number[type=number]::-webkit-inner-spin-button, 
+.input-number[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

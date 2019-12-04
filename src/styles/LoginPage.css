@@ -1,0 +1,35 @@
+.form-margin {
+  margin-top: 100px;
+  width: 300px;
+}
+
+.login-h1-handing {
+  font-weight: 500;
+}
+
+.title-error {
+  margin: 20px 0;
+  background: red;
+  padding: 10px 0;
+}
+
+.btn-password {
+  margin: 10px 0 10px 0; 
+  text-decoration: underline;
+  box-shadow: none;
+}
+
+.btn-password:hover { 
+  text-decoration: underline;
+}
+
+.forget-password {
+  margin-top: 15px;
+}
+
+.btn.btn-login {
+  width: 100%;
+  margin: 0;
+  margin-top: 10px;
+  font-size: large;
+}

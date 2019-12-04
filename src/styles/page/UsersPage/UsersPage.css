@@ -1,0 +1,28 @@
+.btn.btn-act {
+  margin-left: 13px;
+}
+
+.bTnnmE.rdt_Table  {
+  overflow: visible;  
+}
+
+.bDDyfd div:first-child {
+  overflow: visible;
+}
+.select-width-staff{
+  width:200px
+}
+
+
+@media only all and ( max-width: 768px) {
+  .iMLKlc div:first-child.group-btn-customer {
+    overflow: visible;
+  }
+  .sc-dxgOiQ.kJdJTV.style-table-customer {
+    overflow-x: scroll;
+  }
+  .select-width-staff{
+    width:150px
+  }
+}
+

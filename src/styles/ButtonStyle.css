@@ -1,0 +1,106 @@
+.btn-margin-top {
+  margin-top: 10px;
+}
+
+.btn-margin-right {
+  margin-right: 15px;
+}
+.btn-margin-left {
+  margin-left: 15px;
+}
+
+.btn-margin-left-8 {
+  margin-left: 8px;
+}
+.align-center-icon {
+  display: flex;
+  align-items: center;
+}
+.btn.btn-padding-9 {
+  padding: 9px 34.24px;
+}
+.btn.btn-padding-7 {
+  padding: 7px 34.24px;
+}
+/* svg.FaSearch {
+  font-size: large;
+} */
+.btn.btn-pd {
+  padding: 8px 15px;
+}
+.btn.btn-pd svg {
+  margin-left: 5px;
+}
+.btn.btn-pd.btn-width {
+  width: 130px;
+  margin: 6px;
+}
+.btn.btn-pd.btn-layout {
+  margin-left: 0 !important;
+}
+.btn.btn-pd.btn-font {
+  font-size: 12px;
+  padding: 5px 10px;
+  box-shadow: none;
+}
+.btn.btn-mg {
+  margin: 0;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 20px;
+}
+.btn.btn-mg-l {
+  margin-left: 0;
+}
+.btn.btn-mg-r {
+  margin-right: 0;
+}
+.btn-width-foods{
+  width: 120px;
+}
+.btn-block-layout{
+  display: block; 
+}
+.btn.btn-search{
+  padding: 0;
+  width: 38px;
+  border-radius: 50%;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn.btn-margin-left{
+  margin-left: 15px;
+}
+.btn.btn-margin-bottom{
+  margin-bottom: 10px;
+}
+
+.btn.btn-margin-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.btn.btn-padding-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.btn.btn-category-margin {
+  margin-top: 27px;
+}
+
+.btn.btn-margin-left-0 {
+  margin-left: 0;
+}
+
+.btn.btn-margin-top-category {
+  margin-top: 32px;
+}
+
+@media only all and ( max-width: 768px) {
+  .btn.btn-add-tablet {
+    margin-top: 22px;
+  }
+}

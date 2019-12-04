@@ -1,0 +1,12 @@
+.header-sigh-out {
+   background: #F5F5F5;
+   height: 60px;
+}
+
+.header-link-a {
+  padding: 20px 20px;
+}
+.header-sigh-out a{
+   color: black; 
+   text-decoration: none;
+}

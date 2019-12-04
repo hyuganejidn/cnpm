@@ -1,0 +1,60 @@
+.dasboard-style {
+  display: flex;
+}
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.main-style {
+  padding: 30px;
+  height: auto;
+}
+.sc-cSHVUG.jJknLL {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sc-dxgOiQ.kJdJTV {
+  overflow: visible;
+}
+
+.sidenav---sidenav---_2tBP .sidenav---collapsed---LQDEv{
+    position: relative;
+}
+.sidenav---sidenav---_2tBP .sidenav---expanded---1KdUL{
+  position: fixed;
+  max-width: 64px;
+}
+
+.sidenav---sidenav-toggle---1KRjR {
+  position: fixed;
+  top: 0;
+}
+
+.sidenav---sidenav-nav---3tvij {
+  position: fixed;
+  top: 50px;
+  max-width: 64px;
+}
+
+.sidenav---sidenav-nav---3tvij.sidenav---expanded---1KdUL {
+  position: fixed;
+  top: 50px;
+  max-width: 250px;
+}
+
+.sc-jKJlTe.jDHQPG {
+  height: auto;
+}
+
+@media only all and ( max-width: 768px ) {
+  .wrapper {
+    position: absolute;
+    padding-left: 64px;
+  }
+} 

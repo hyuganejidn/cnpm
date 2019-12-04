@@ -1,0 +1,18 @@
+form {
+  width: auto;
+  margin: 0;
+}
+
+.navbar-style {
+  display: flex;
+  flex-direction: column;
+  transition: all 1s;
+}
+
+.nav-style {
+  flex-direction: column;
+}
+
+.nav-style a {
+  color: black;
+}
