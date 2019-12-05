@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Button} from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 
 function ConfirmModal(props) {
   return (
@@ -9,6 +9,7 @@ function ConfirmModal(props) {
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      animation={false}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
@@ -19,9 +20,9 @@ function ConfirmModal(props) {
         <p>
           {props.confirmtext}
         </p>
-      {props.msg ? (
+        {props.msg ? (
           <p className="error">{props.msg}</p>
-      ) : ''}
+        ) : ''}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide} variant="outline-primary">Không</Button>

@@ -17,20 +17,8 @@ const Header = props => {
     <SideNav expanded={expanded} onToggle={(e) => setExpanded(e)}>
       <SideNav.Toggle />
       <SideNav.Nav>
-        <LinkContainer to="/admin" exact>
-          <NavItem eventKey="">
-            <NavIcon>
-              <FaHome />
-            </NavIcon>
-            <div className="sidebar-nav">
-              <LinkContainer to="/admin" exact>
-                <Nav.Link className="navlink-style">Home</Nav.Link>
-              </LinkContainer>
-            </div>
-          </NavItem>
-        </LinkContainer>
 
-        <LinkContainer to="/admin/profile" exact>
+        {/* <LinkContainer to="/admin/profile" exact>
           <NavItem eventKey="">
             <NavIcon>
               <FaUserAlt />
@@ -41,7 +29,7 @@ const Header = props => {
               </LinkContainer>
             </div>
           </NavItem>
-        </LinkContainer>
+        </LinkContainer> */}
 
         <LinkContainer to="/admin/users" exact>
           <NavItem eventKey="">
@@ -105,7 +93,7 @@ const Header = props => {
           </NavItem>
         </LinkContainer>
 
-        <LinkContainer to="/admin/places" exact>
+        {/* <LinkContainer to="/admin/places" exact>
           <NavItem eventKey="">
             <NavIcon>
               <FaHome />
@@ -116,7 +104,7 @@ const Header = props => {
               </LinkContainer>
             </div>
           </NavItem>
-        </LinkContainer>
+        </LinkContainer> */}
 
         <LinkContainer to="/admin/requests" exact>
           <NavItem eventKey="">

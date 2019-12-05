@@ -1,0 +1,33 @@
+.price {
+  display: contents;
+  width: 100%;
+}
+
+.object-style {
+  display: flex;
+}
+
+.hLrWNh {
+  font-size: 18px;
+  color: black;
+}
+.inhAeF {
+  font-size: 18px;
+}
+
+.ffiUQl {
+  font-size: 18px;
+  color: black;
+}
+/* .input-update {
+  width: 100% !important;
+} */
+.resetmargin {
+  margin: 0;
+}
+
+.style-table-food .sc-bdVaJa.bTnnmE.rdt_Table .sc-kpOJdX.bIxPIp.rdt_TableBody {
+  min-width: 1105px;
+  overflow-y: scroll;
+  height: 500px;
+}

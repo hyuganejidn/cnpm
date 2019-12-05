@@ -8,6 +8,7 @@ import "mdbreact/dist/css/mdb.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
+  console.log(process.env.REACT_APP_BASE_URL, 'env')
   return (
     <Router>
       <Route exact path="/login" component={LoginPage} />

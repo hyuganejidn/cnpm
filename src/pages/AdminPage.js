@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { DashboardPage, UsersPage, PlacesPage, ProfilePage, RequestsPage, ReportsPage, RestaurantsPage, TransportationsPage, AttractionsPage, HotelsPage } from '../pages'
+import { DashboardPage, UsersPage, PlacesPage, RequestsPage, ReportsPage, RestaurantsRoute, TransportationsRoute, AttractionsRoute, HotelsRoute } from '../pages'
 import { Header, HeaderSignOut, PrivateRoute } from '../components'
 
 import '../styles/AdminPage.css'
@@ -15,15 +15,15 @@ const AdminPage = ({ match, history }) => {
         <HeaderSignOut history={history} />
         <div className="main-style">
           <PrivateRoute path={`${match.path}`} exact component={DashboardPage} />
-          <PrivateRoute path={`${match.path}/profile`} exact component={ProfilePage} />
+          {/* <PrivateRoute path={`${match.path}/profile`} exact component={ProfilePage} /> */}
           <PrivateRoute path={`${match.path}/users`} component={UsersPage} />
           <PrivateRoute path={`${match.path}/places`} component={PlacesPage} />
           <PrivateRoute path={`${match.path}/requests`} component={RequestsPage} />
           <PrivateRoute path={`${match.path}/reports`} component={ReportsPage} />
-          <PrivateRoute path={`${match.path}/restaurants`} component={RestaurantsPage} />
-          <PrivateRoute path={`${match.path}/transportations`} component={TransportationsPage} />
-          <PrivateRoute path={`${match.path}/attractions`} component={AttractionsPage} />
-          <PrivateRoute path={`${match.path}/hotels`} component={HotelsPage} />
+          <PrivateRoute path={`${match.path}/restaurants`} component={RestaurantsRoute} />
+          <PrivateRoute path={`${match.path}/transportations`} component={TransportationsRoute} />
+          <PrivateRoute path={`${match.path}/attractions`} component={AttractionsRoute} />
+          <PrivateRoute path={`${match.path}/hotels`} component={HotelsRoute} />
         </div>
       </div>
     </div>
