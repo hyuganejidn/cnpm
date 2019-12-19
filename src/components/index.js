@@ -5,6 +5,7 @@ import TableWithLoading from './WithLoading'
 import Select from './Select'
 import ConfirmModal from './ConfirmModal'
 import Images from './Images'
+import RequestsUserDetail from './RequestsUser'
 export {
-  Header, HeaderSignOut, Images, PrivateRoute, TableWithLoading, ConfirmModal, Select,
+  Header, HeaderSignOut, RequestsUserDetail, Images, PrivateRoute, TableWithLoading, ConfirmModal, Select,
 }

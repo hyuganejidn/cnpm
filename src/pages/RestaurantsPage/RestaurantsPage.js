@@ -8,16 +8,62 @@ import '../../styles/LabelStyle.css'
 import '../../styles/page/RestaurantsPage/RestaurantsPage.css'
 import { TableWithLoading, Select, ConfirmModal } from "../../components"
 function RestaurantsPage() {
-  const [place, setPlace] = useState([{
-    id: '124212',
-    title: 'Võ Xuân Hùng',
+
+  const [restaurants, setRestaurants] = useState([
+    { "name": "L' Italiano Restaurant", "street_address": "An Thuong 30", "extended_address": "My An, Ngu Hanh Son", "locality": "Da Nang 550000, ", "country_name": "Vietnam", "mobile": "+84 90 606 94 58", "food_category": "Italian, Pizza, Mediterranean, European", "special_diet": "Vegetarian Friendly, Vegan Options", "meal": "Breakfast, Lunch, Dinner, Brunch, Drinks" },
+    { "name": "Bep Cuon Da Nang", "street_address": "54 Nguyen Van Thoai", "extended_address": "Ngu Hanh Son", "locality": "Da Nang 550000, ", "country_name": "Vietnam", "mobile": "+84 70 2689 989", "food_category": "Vietnamese, Asian", "special_diet": "Lunch, Dinner, Brunch, Drinks", "meal": "Buffet, Street Parking, Serves Alcohol, Full Bar, Wine and Beer, Family style", }
+  ])
+  const columns = [{
+    name: "Tên nhà hàng",
+    selector: "name",
+    sortable: true,
+    width: '200px',
+    wrap: true,
+    hide: 'sm'
   },
   {
-    id: '1241232',
+    name: "Địa chỉ",
+    selector: "street_address",
+    sortable: true,
+    width: '200px',
+    wrap: true
   },
   {
-    id: '1244212',
-  }])
+    name: "Số điện thoại",
+    selector: "mobile",
+    sortable: true,
+    width: '180px',
+    center: true,
+  },
+  
+  // {
+  //   name: "User requset",
+  //   width: 170,
+  //   cell: (row) => {
+  //     return (
+  //       <Link to="/admin/restaurants/reports">
+  //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
+  //           Requests
+  //         </Button>
+  //       </Link>
+  //     )
+  //   }
+  // },
+  {
+    name: "User report",
+    width: 170,
+    cell: (row) => {
+      return (
+        <Link to="/admin/restaurants/reports">
+          <Button variant="success" className="btn-padding-9 btn-add-tablet">
+            Hiển thị<IoIosAddCircle />
+          </Button>
+        </Link>
+      )
+    }
+  },
+  ]
+  const [isLoading, setLoading] = useState(false);
   const [textSearchValue, setTextSearchValue] = useState('');
 
   const onSearchSubmit = e => {
@@ -48,23 +94,36 @@ function RestaurantsPage() {
             </Button>
           </Form>
         </div>
-        <Link to="/admin/restaurants/new">
-          <Button variant="success" className="btn-padding-9 btn-add-tablet">
-            Thêm nhà hàng <IoIosAddCircle />
-          </Button>
-        </Link>
+        <div>
+          <Link to="/admin/restaurants/reports">
+            <Button variant="success" className="btn-padding-9 btn-add-tablet">
+              Requests
+            </Button>
+          </Link>
+          <Link to="/admin/restaurants/new">
+            <Button variant="success" className="btn-padding-9 btn-add-tablet">
+              Thêm nhà hàng <IoIosAddCircle />
+            </Button>
+          </Link>
+        </div>
       </Navbar>
-      {/* <TableWithLoading
+      <TableWithLoading
         className="style-table-customer"
         isLoading={isLoading}
         columns={columns}
-        data={users}
+        data={restaurants}
         pagination={true}
         paginationServer={true}
         paginationDefaultPage={2}
-        paginationTotalRows={20}s
+        paginationTotalRows={20}
         paginationPerPage={10}
+        striped={true}
+        highlightOnHover={true}
         noDataComponent='Không có dữ liệu'
+        persistTableHead={true}
+        selectableRows={true}
+        clearSelectedRows={true}
+        clearSelectedRows={true}
         onChangePage={page => {
           console.log(page)
         }}
@@ -72,7 +131,7 @@ function RestaurantsPage() {
           console.log(currentRowsPerPage, currentPage)
         }}
         paginationRowsPerPageOptions={[20, 50, 100]}
-      /> */}
+      />
     </div>
   );
 }

@@ -114,8 +114,8 @@ const PlacesPage = (props) => {
             </div>
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Nội dung:</Form.Label>
-            <Form.Control placeholder="Nội dung" as='textarea' value={place.content} onChange={(e) => onChange(e, 'content')} rows='4' />
+            <Form.Label className="title-weight-400">Mô tả:</Form.Label>
+            <Form.Control placeholder="Mô tả" as='textarea' value={place.content} onChange={(e) => onChange(e, 'content')} rows='4' />
             <div className="error">
               {validationResult.content && validationResult.content.isInvalid && validationResult.content.message}
             </div>

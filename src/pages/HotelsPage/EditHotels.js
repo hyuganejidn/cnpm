@@ -1,9 +1,9 @@
 import React from "react";
 import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { TransportationsForm } from '../TransportationsPage'
+import { HotelsForm } from '../HotelsPage'
 
-function TransportationsNew(props) {
+function HotelsNew(props) {
   // const onCreate = food => {
   //   // submit api and redirect to ingredients page
   //   return createFood(food).then(() => props.history.push("/admin/foods"));
@@ -15,15 +15,14 @@ function TransportationsNew(props) {
   
   return (
     <>
-      <h1 className="title">Transportations</h1>
-      
+      <h1 className="title">Quản Lý khách sạn</h1>
       <Breadcrumb>
         <LinkContainer to="/admin/hotels">
-          <Breadcrumb.Item>Transportations</Breadcrumb.Item>
+          <Breadcrumb.Item>Danh sách khách sạn</Breadcrumb.Item>
         </LinkContainer>
-        <Breadcrumb.Item active>Thêm transport</Breadcrumb.Item>
+        <Breadcrumb.Item active>Thêm khách sạn</Breadcrumb.Item>
       </Breadcrumb>
-      <TransportationsForm
+      <HotelsForm
       // onCreate={onCreate}
       // onCreateAndContinue={onCreateAndContinue}
       />
@@ -31,4 +30,4 @@ function TransportationsNew(props) {
   );
 }
 
-export default TransportationsNew;
+export default HotelsNew;

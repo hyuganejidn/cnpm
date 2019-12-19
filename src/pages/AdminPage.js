@@ -6,8 +6,8 @@ import { Header, HeaderSignOut, PrivateRoute } from '../components'
 import '../styles/AdminPage.css'
 
 const AdminPage = ({ match, history }) => {
-  console.log("match", match)
-  console.log("history", history)
+  // console.log("match", match)
+  // console.log("history", history)
   return (
     <div className="dasboard-style">
       <Header history={history} />

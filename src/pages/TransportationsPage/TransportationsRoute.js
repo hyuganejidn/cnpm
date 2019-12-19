@@ -1,5 +1,5 @@
 import React from 'react'
-import { TransportationsNew, TransportationsPage } from '../TransportationsPage'
+import { TransportationsNew, TransportationsPage, TransportationsRequestUser, TransportationsReportedUser } from '../TransportationsPage'
 import { PrivateRoute } from '../../components/'
 
 function TransportationsRoute({ match }) {
@@ -7,6 +7,8 @@ function TransportationsRoute({ match }) {
     <div>
       <PrivateRoute path={`${match.path}`} exact component={TransportationsPage} />
       <PrivateRoute path={`${match.path}/new`} exact component={TransportationsNew} />
+      <PrivateRoute path={`${match.path}/requests`} exact component={TransportationsRequestUser} />
+      <PrivateRoute path={`${match.path}/reports`} exact component={TransportationsReportedUser} />
     </div>
   )
 }

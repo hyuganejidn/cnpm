@@ -3,10 +3,12 @@ import { Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import SideNav, { NavItem, NavIcon } from '@trendmicro/react-sidenav'
 import {
-  FaHome, FaUserAlt
+  FaHome, FaUserFriends, FaTrafficLight
 } from "react-icons/fa"
-import { MdFormatAlignJustify } from "react-icons/md"
-import { IoIosPeople, IoMdCart, IoMdBriefcase } from "react-icons/io"
+import { MdReportProblem } from "react-icons/md"
+import { IoIosRestaurant, IoIosBusiness, IoIosGitPullRequest } from "react-icons/io"
+import { GoRequestChanges } from "react-icons/go";
+import { GiTransportationRings } from "react-icons/gi";
 
 import '../styles/components/Header.css'
 import '../styles/components/HeaderSidenav.css'
@@ -34,7 +36,7 @@ const Header = props => {
         <LinkContainer to="/admin/users" exact>
           <NavItem eventKey="">
             <NavIcon>
-              <FaHome />
+              <FaUserFriends />
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/users" exact>
@@ -44,10 +46,10 @@ const Header = props => {
           </NavItem>
         </LinkContainer>
 
-        <LinkContainer to="/admin/place/restaurants" exact>
+        <LinkContainer to="/admin/restaurants" exact>
           <NavItem eventKey="">
             <NavIcon>
-              <FaHome />
+              <IoIosRestaurant />
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/restaurants" exact>
@@ -59,7 +61,7 @@ const Header = props => {
         <LinkContainer to="/admin/hotels" exact>
           <NavItem eventKey="">
             <NavIcon>
-              <FaHome />
+              <IoIosBusiness />
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/hotels" exact>
@@ -80,10 +82,10 @@ const Header = props => {
             </div>
           </NavItem>
         </LinkContainer>
-        <LinkContainer to="/admin//transportations" exact>
+        <LinkContainer to="/admin/transportations" exact>
           <NavItem eventKey="">
             <NavIcon>
-              <FaHome />
+              <GiTransportationRings />
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/transportations" exact>
@@ -109,7 +111,7 @@ const Header = props => {
         <LinkContainer to="/admin/requests" exact>
           <NavItem eventKey="">
             <NavIcon>
-              <FaHome />
+              <GoRequestChanges />
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/requests" exact>
@@ -122,7 +124,7 @@ const Header = props => {
         <LinkContainer to="/admin/reports" exact>
           <NavItem eventKey="">
             <NavIcon>
-              <FaHome />
+              <MdReportProblem />
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/reports" exact>

@@ -9,6 +9,7 @@ function HeaderSignOut(props) {
 
   const signOutHandler = (e) => {
     e.preventDefault()
+    localStorage.removeItem('token')
     props.history.push('/login')
   }
 

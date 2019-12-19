@@ -6,11 +6,11 @@ import { IoIosClose } from "react-icons/io";
 import "../../styles/ButtonStyle.css";
 import "../../styles/page/PlacesPage/PlacesPage.css";
 import { Select, Images, TableWithLoading } from "../../components";
-import { FormValidator } from '../../services'
+import { FormValidator, createServiceHotel } from '../../services'
 
 const formValidator = new FormValidator([
   {
-    field: "title",
+    field: "name",
     method: validator.isEmpty,
     validWhen: false,
     message: "Vui lòng nhập tên địa điểm"
@@ -19,31 +19,30 @@ const formValidator = new FormValidator([
     field: "content",
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập mô t địa điểm"
-  }
+    message: "Vui lòng nhập địa điểm"
+  },
+  {
+    field: "street_address",
+    method: validator.isEmpty,
+    validWhen: false,
+    message: "Vui lòng nhập địa chỉ"
+  },
+  {
+    field: 'mobile',
+    method: validator.isLength,
+    validWhen: true,
+    args: [{ min: 10, max: 11 }],
+    message: 'Vui lòng nhập 10 hoặc 11 số.'
+  },
 ]);
 
-const options = [{
-  label: 'Nhà hàng + coffee',
-  value: 1
-}, {
-  label: 'Khách sạn',
-  value: 2
-}, {
-  label: 'Attract',
-  value: 3
-}, {
-  label: 'Transport',
-  value: 4
-}]
-
-const TransportationsForm = (props) => {
+const HotelsForm = (props) => {
   const [isReset, setIsReset] = useState(false)
   const [place, setPlace] = useState({
-    title: '', content: '', time: '', paths: [], old_paths: [], catagory: ''
+    name: '', content: '', street_address: '', extended_address: '', mobile: '', website: '', app: '',
   })
+  const [images, setImages] = useState({ paths: [], old_paths: [] })
   const [validationResult, setValidationResult] = useState({ isValid: false })
-  const [isCatagory, setIsCatagory] = useState({});
 
   const [allFilesImage, setAllFilesImage] = useState([])
   const _validation = (isAll) => {
@@ -60,69 +59,100 @@ const TransportationsForm = (props) => {
     setValidationResult(rs)
   }
 
-  const onChangeCatagories = (e, idx) => {
-    setPlace({ ...place, catagory: e });
-  };
 
   // const [images, setImages] = useState([])
   const onImageAdded = (imageId, file) => {
     allFilesImage.push(file)
-    place.paths.push(imageId);
-    setPlace({ ...place });
+    images.paths.push(imageId);
+    setImages({ ...images });
   };
   const onReset = (files, allFilesImage) => {
     allFilesImage.forEach(f => f.remove())
   }
   const onImageRemoved = imageId => {
-    const images = place.paths.filter(id => id !== imageId);
-    setPlace({ ...place, paths: images });
+    const images = images.paths.filter(id => id !== imageId);
+    setImages({ ...images, paths: images });
   };
 
   const deleteImages = (e, imageId, i) => {
-    const images = place.paths.filter(id => id !== imageId);
-    place.old_paths.splice(i, 1);
-    setPlace({ ...place, paths: images });
+    const images = images.paths.filter(id => id !== imageId);
+    images.old_paths.splice(i, 1);
+    setImages({ ...images, paths: images });
   };
 
   const onUpdate = (e) => {
     e.preventDefault()
     // validation
     if (_validation(true).isValid) {
-      props.history.push('/admin/home')
+      props.history.push('/admin/hotels')
     }
   }
   return (
     <div>
       <Row>
         <Col >
-          <Form.Group as={Col} >
-            <Select
-              value={place.catagory}
-              placeholder='Loại khu vực'
-              options={options}
-              onChange={onChangeCatagories}
-            ></Select>
-          </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Tiêu đề:</Form.Label>
-            <Form.Control placeholder="Tiêu đề" value={place.title} onChange={(e) => onChange(e, 'title')} />
+            <Form.Label className="title-weight-400">Tên nhà hàng:</Form.Label>
+            <Form.Control placeholder="Tên nhà hàng" value={place.name} onChange={(e) => onChange(e, 'name')} />
             <div className="error">
-              {validationResult.title && validationResult.title.isInvalid && validationResult.title.message}
+              {validationResult.name && validationResult.name.isInvalid && validationResult.name.message}
             </div>
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Nội dung:</Form.Label>
-            <Form.Control placeholder="Nội dung" as='textarea' value={place.content} onChange={(e) => onChange(e, 'content')} rows='4' />
+            <Form.Label className="title-weight-400">Mô tả:</Form.Label>
+            <Form.Control placeholder="Mô tả" value={place.content} onChange={(e) => onChange(e, 'content')} rows='4' />
             <div className="error">
               {validationResult.content && validationResult.content.isInvalid && validationResult.content.message}
             </div>
           </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Địa chỉ:</Form.Label>
+            <Form.Control placeholder="Địa chỉ" value={place.street_address} onChange={(e) => onChange(e, 'street_address')} rows='4' />
+            <div className="error">
+              {validationResult.street_address && validationResult.street_address.isInvalid && validationResult.street_address.message}
+            </div>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Địa chỉ chi tiết* :</Form.Label>
+            <Form.Control placeholder="Địa chỉ chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
+          </Form.Group>
+          <Form.Group as={Col} lg="6">
+            <Form.Label className="title-weight-400">Số Điện Thoại* :</Form.Label>
+            <Form.Control placeholder="Số Điện Thoại" type='number' value={place.mobile} className='input-number' onChange={(e) => onChange(e, 'mobile')} />
+            <div className="error">
+              {validationResult.mobile && validationResult.mobile.isInvalid && validationResult.mobile.message}
+            </div>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Địa chỉ chi tiết* :</Form.Label>
+            <Form.Control placeholder="Địa chỉ chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
+            <div className="error">
+              {validationResult.extended_address && validationResult.extended_address.isInvalid && validationResult.extended_address.message}
+            </div>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Loại món ăn* :</Form.Label>
+            <Form.Control placeholder="Loại món ăn" type='number' value={place.food_category} className='input-number' onChange={(e) => onChange(e, 'food_category')} />
+            <div className="error">
+              {validationResult.food_category && validationResult.food_category.isInvalid && validationResult.food_category.message}
+            </div>
+          </Form.Group>
+          <Form.Group as={Col} >
+            <Form.Label className="title-weight-400">Bữa ăn* :</Form.Label>
+            <Form.Control placeholder="Bữa ăn" value={place.meal} className='input-number' onChange={(e) => onChange(e, 'meal')} />
+            <div className="error">
+              {validationResult.meal && validationResult.meal.isInvalid && validationResult.meal.message}
+            </div>
+          </Form.Group>
+          <Form.Group as={Col} >
+            <Form.Label className="title-weight-400">Chế độ ăn* :</Form.Label>
+            <Form.Control placeholder="Chế độ ăn" type='number' value={place.special_diet} className='input-number' onChange={(e) => onChange(e, 'special_diet')} />
+          </Form.Group>
         </Col>
 
         <Col >
-
           <div className="Image-List">
-            {place.old_paths.map((image, i) => {
+            {images.old_paths.map((image, i) => {
               return (
                 <div className="Image-Item" key={i}>
                   <img
@@ -153,4 +183,4 @@ const TransportationsForm = (props) => {
 }
 
 
-export default TransportationsForm;
+export default HotelsForm;

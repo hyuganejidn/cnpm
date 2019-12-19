@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Form, Navbar, FormControl, Modal, Col } from "react-bootstrap";
+import React, { useState, useEffect } from 'react'
+import { Button, Form, Navbar, FormControl, Modal, Col } from "react-bootstrap"
 
 import { FaSearch, FaUserAltSlash, FaUserCheck } from "react-icons/fa"
 
@@ -7,10 +7,10 @@ import { TableWithLoading, Select, ConfirmModal } from "../../components"
 import '../../styles/page/UsersPage/UsersPage.css'
 import '../../styles/ButtonStyle.css'
 import '../../styles/LabelStyle.css'
-
+import { grantUser, listUsersRole } from '../../services'
 const UsersPage = (props) => {
   const [roleObject, setRoleObject] = useState({})
-  const [privilegeUser, setPrivilegeUser] = useState({ value: 0, label: "User" })
+  const [privilegeUser, setPrivilegeUser] = useState({ value: 3, label: "User" })
   const [textSearchValue, setTextSearchValue] = useState('');
   const [currentRow, setCurrentRow] = useState({});
   const [modalShow, setModalShow] = useState(false);
@@ -18,6 +18,7 @@ const UsersPage = (props) => {
   const [isLoading, setLoading] = useState(false);
   const [modalShowRole, setModalShowRole] = useState(false)
   const [currentRoleId, setCurrentRoleId] = useState('')
+  const [roleCurrent, setRoleCurrent] = useState({})
   const [users, setUsers] = useState([{
     id: '124212',
     fullName: 'Võ Xuân Hùng',
@@ -25,7 +26,6 @@ const UsersPage = (props) => {
     username: 'xuanhung',
     password: '123123',
     role: 2,
-    blocked: false
   },
   {
     id: '1241232',
@@ -34,17 +34,25 @@ const UsersPage = (props) => {
     username: 'xuanhung2',
     password: '123123',
     role: 1,
-    blocked: false
   },
   {
-    id: '1244212',
+    id: '124412',
     fullName: 'Võ Xuân Hùng',
     email: 'xuanhung2@gmail.com',
-    username: 'xuanhung2',
+    username: 'xuanhung3',
     password: '123123',
     role: 0,
-    blocked: false
+  }, {
+    id: '144212',
+    fullName: 'Võ Xuân Hùng',
+    email: 'xuanhung2@gmail.com',
+    username: 'xuanhung4',
+    password: '123123',
+    role: 0,
   }])
+  const [amount, setAmount] = useState(20)
+  const [page, setPage] = useState(1)
+  const [role, setRole] = useState(3)
   const columns = [
     {
       name: "Tên khách hàng",
@@ -62,7 +70,7 @@ const UsersPage = (props) => {
       name: "Tên đăng nhập",
       selector: "username",
       sortable: true,
-      width: '200px'
+      width: '180px'
     },
     {
       name: "Quyền",
@@ -72,9 +80,10 @@ const UsersPage = (props) => {
       cell: (row) => {
         return (
           <>
-            <div> {row.role === 0 && "Người dùng"} </div>
-            <div> {row.role === 1 && "Quản trị viên"} </div>
-            <div> {row.role === 2 && "Admin"} </div>
+            <div> {row.role === 3 && "Người dùng"} </div>
+            <div> {row.role === 2 && "Quản trị viên"} </div>
+            <div> {row.role === 1 && "Admin"} </div>
+            {/* <div> {row.role === 4 && } </div> */}
           </>
         )
       }
@@ -90,34 +99,35 @@ const UsersPage = (props) => {
               placeholder='Quyền'
               options={[
                 {
-                  value: 1,
+                  value: 2,
                   label: 'Staff'
                 },
                 {
-                  value: 0,
+                  value: 3,
                   label: 'User'
                 },
                 {
-                  value: 2,
+                  value: 1,
                   label: 'Admin'
-                }
+                },
               ]}
-              value={roleObject[row.id]}
-              onChange={(e) => addRoleObject(e, row)}
+              value={roleObject[row.username]}
+              onChange={(e) => grantRightsUser(e, row)}
             ></Select>
-            <Button variant="success" disabled={!roleObject[row.id]} onClick={() => acceptsRole(row)} className="btn-margin btn-act  btn-pd btn-width">Xác nhận</Button>
+            <Button variant="success" disabled={!roleObject[row.username]} onClick={() => acceptsRole(row)} className="btn-margin btn-act  btn-pd btn-width">Xác nhận</Button>
           </div >
 
         )
-      }
+      },
+      left: true
     },
     {
       name: "",
       width: '400px',
       cell: (row) => {
         return (
-          <div className="ml-auto group-btn-customer">
-            {row.blocked ? (
+          <div className="ml-20 group-btn-customer">
+            {row.role === 4 ? (
               <Button variant="success" onClick={() => active(row)} className="btn-margin btn-act  btn-pd btn-width">Hoạt Động <FaUserCheck /></Button>
             ) : (
                 <Button variant="danger" onClick={() => destroy(row)} className="btn-margin  btn-pd btn-width">Vô Hiệu Hóa <FaUserAltSlash /></Button>
@@ -128,46 +138,74 @@ const UsersPage = (props) => {
       }
     }
   ];
+
+  useEffect(() => {
+    listUsersRole(amount, page, role)
+      .then(repsonse => {
+        console.log(repsonse)
+        setUsers([...users])
+      })
+  }, [])
+
   const showProfile = row => {
     setIsModalProfileUser(true)
   }
   const acceptsRole = (row) => {
     setModalShowRole(true);
-    setCurrentRoleId(row.id)
+    setCurrentRoleId(row.username)
   }
-  const _acceptsRole = () => {
-    setModalShowRole(false);
-  }
+
   const active = (row) => {
     const item = users.find((u) => u.id === row.id)
-    item.blocked = false
+    item.role = 3
     setUsers([...users])
+    const active = { username: row.username, role: 3 }
+    // grantUser(active)
   }
   const _destroy = () => {
-    if (currentRow.id) {
-      const item = users.find((u) => u.id === currentRow.id)
-      item.blocked = true
-      setUsers([...users])
-    }
-    setModalShow(false);
-  };
+    console.log(currentRow.username)
+    const block = { username: currentRow.username, role: 4 }
+    const item = users.find((u) => u.id === currentRow.id)
+    item.role = 4
+    // grantUser(block)
+    setUsers([...users])
+    setModalShow(false)
+  }
   const destroy = row => {
-    setCurrentRow(row);
-    setModalShow(true);
-  };
+    setCurrentRow(row)
+    setModalShow(true)
+  }
   const onSearchChange = e => {
-    e.preventDefault();
-    setTextSearchValue(e.target.value);
-  };
+    e.preventDefault()
+    setTextSearchValue(e.target.value)
+  }
   const onSearchSubmit = e => {
-    e.preventDefault();
-  };
-
-  const addRoleObject = (e, row) => {
-    setRoleObject({ ...roleObject, [row.id]: e })
+    e.preventDefault()
+    console.log(privilegeUser, textSearchValue)
+    // listUsersRole({ amount: 20, page: 1, role: privilegeUser.value })
+    //   .then(response => setUsers([...response]))
   }
 
-  const grantRightsUser = (e) => {
+  const grantRightsUser = (e, row) => {
+    setRoleObject({ [row.username]: e })
+    setRoleCurrent({ username: row.username, role: e.value })
+    // console.log({ username: row.username, role: e.value })
+  }
+  const _acceptsRole = (e) => {
+    setModalShowRole(false)
+    console.log(roleCurrent)
+    setRoleObject({ [roleCurrent.username]: false })
+    // grantUser(roleCurrent)
+    //   .then(response => {
+    //     console.log(response.data)
+    //     const item = users.find((u) => u.id === response.data.id)
+    //     item.role = response.data.role
+    //     setUsers([...users])
+    //   })
+
+  }
+  const changeSearchRole = (e) => {
+    console.log(e)
     setPrivilegeUser(e)
   }
 
@@ -191,20 +229,23 @@ const UsersPage = (props) => {
               className='select-width-staff'
               options={[
                 {
-                  value: 1,
+                  value: 2,
                   label: 'Staff'
                 },
                 {
-                  value: 0,
+                  value: 3,
                   label: 'User'
                 },
                 {
-                  value: 2,
+                  value: 1,
                   label: 'Admin'
+                }, {
+                  value: 4,
+                  label: 'Block'
                 }
               ]}
               value={privilegeUser}
-              onChange={grantRightsUser}
+              onChange={changeSearchRole}
             ></Select>
             <Button type="submit" variant="info" className="btn btn-padding-7">
               <FaSearch className="FaSearch" />
@@ -244,8 +285,8 @@ const UsersPage = (props) => {
         paginationRowsPerPageOptions={[20, 50, 100]}
       />
     </div>
-  );
+  )
 }
 
 
-export default UsersPage;
+export default UsersPage

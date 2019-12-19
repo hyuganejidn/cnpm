@@ -4,20 +4,32 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import "../styles/LoginPage.css";
 import "../styles/LabelStyle.css";
+import { auth } from "../services";
 
 const LoginPage = props => {
+  if (localStorage.getItem('token')) {
+    props.history.push('/admin')
+  }
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showText, setShowText] = useState(false);
 
   const loginFormSubmitHandler = (e) => {
     e.preventDefault();
-    if (username === 'admin' && password === 'admin') {
-      props.history.push("/admin");
-    } else {
-      setShowText(true)
-    }
+    auth(username, password)
+      .then(response => {
+        console.log(response.data.message.user)
+        localStorage.setItem('token', response.data.message.user.token)
+        props.history.push('/admin/users')
+      })
+      .catch((error) => {
+        // show errors if login failure
+        setShowText(true)
+        console.log('@ error', error.response)
+      })
   };
+
   return (
     <Row className="justify-content-md-center">
       <Form className="form-margin">
