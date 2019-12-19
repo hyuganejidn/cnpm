@@ -162,6 +162,7 @@ const UsersPage = (props) => {
     const active = { username: row.username, role: 3 }
     // grantUser(active)
   }
+  
   const _destroy = () => {
     console.log(currentRow.username)
     const block = { username: currentRow.username, role: 4 }

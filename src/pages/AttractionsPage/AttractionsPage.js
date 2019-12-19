@@ -104,7 +104,8 @@ function AttractionsPage() {
             <Button variant="success" className="btn-padding-9 btn-add-tablet">
               Thêm attractions <IoIosAddCircle />
             </Button>
-          </Link>  </div>
+          </Link>
+        </div>
       </Navbar>
       <TableWithLoading
         className="style-table-customer"

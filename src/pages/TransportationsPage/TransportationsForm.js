@@ -124,17 +124,10 @@ const HotelsForm = (props) => {
             </div>
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Địa chỉ chi tiết* :</Form.Label>
-            <Form.Control placeholder="Địa chỉ chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
+            <Form.Label className="title-weight-400">WebSite* :</Form.Label>
+            <Form.Control placeholder="WebSite" type='number' value={place.website} className='input-number' onChange={(e) => onChange(e, 'website')} />
             <div className="error">
-              {validationResult.extended_address && validationResult.extended_address.isInvalid && validationResult.extended_address.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Loại món ăn* :</Form.Label>
-            <Form.Control placeholder="Loại món ăn" type='number' value={place.food_category} className='input-number' onChange={(e) => onChange(e, 'food_category')} />
-            <div className="error">
-              {validationResult.food_category && validationResult.food_category.isInvalid && validationResult.food_category.message}
+              {validationResult.website && validationResult.website.isInvalid && validationResult.website.message}
             </div>
           </Form.Group>
           <Form.Group as={Col} >

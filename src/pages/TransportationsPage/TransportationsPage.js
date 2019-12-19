@@ -51,7 +51,8 @@ function TransportationsForm() {
     sortable: true,
     width: '250px',
     // wrap: true
-  }, {
+  },
+   {
     name: "User report",
     width: 200,
     cell: (row) => {
