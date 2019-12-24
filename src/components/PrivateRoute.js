@@ -10,7 +10,7 @@ const PriveteRoute = ({ component: Component, ...rest }) => {
         localStorage.getItem('token') ?
           <Component  {...props} /> : <Redirect
             to={{
-              pathname: "/login",
+              pathname: '/login',
               state: { from: props.location }
             }}
           />

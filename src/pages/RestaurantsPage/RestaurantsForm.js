@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col, Button, Form, } from "react-bootstrap";
-import validator from "validator";
-import { IoIosClose } from "react-icons/io";
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Button, Form, } from 'react-bootstrap';
+import validator from 'validator';
+import { IoIosClose } from 'react-icons/io';
 
-import "../../styles/ButtonStyle.css";
-import "../../styles/page/PlacesPage/PlacesPage.css";
-import { Select, Images, TableWithLoading } from "../../components";
+import '../../styles/ButtonStyle.css';
+import '../../styles/page/PlacesPage/PlacesPage.css';
+import { Select, Images, TableWithLoading } from '../../components';
 import { FormValidator, createServiceHotel } from '../../services'
 
 const formValidator = new FormValidator([
   {
-    field: "name",
+    field: 'name',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập tên địa điểm"
+    message: 'Vui lòng nhập tên địa điểm'
   },
   {
-    field: "content",
+    field: 'content',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập địa điểm"
+    message: 'Vui lòng nhập địa điểm'
   },
   {
-    field: "street_address",
+    field: 'street_address',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập địa chỉ"
+    message: 'Vui lòng nhập địa chỉ'
   },
   {
     field: 'mobile',
@@ -35,16 +35,27 @@ const formValidator = new FormValidator([
     message: 'Vui lòng nhập 10 hoặc 11 số.'
   },
   {
-    field: "extended_address",
+    field: 'extended_address',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập chi tiết địa điểm"
+    message: 'Vui lòng nhập chi tiết địa điểm'
   },
   {
-    field: "food_category",
+    field: 'food_category',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập loại món ăn"
+    message: 'Vui lòng nhập loại món ăn'
+  },
+  {
+    field: 'meal',
+    method: validator.isEmpty,
+    validWhen: false,
+    message: 'Vui lòng nhập bữa ăn'
+  }, {
+    field: 'special_diet',
+    method: validator.isEmpty,
+    validWhen: false,
+    message: 'Vui lòng nhập bữa ăn'
   },
 ]);
 
@@ -96,74 +107,76 @@ const RestaurantsForm = (props) => {
   const onUpdate = (e) => {
     e.preventDefault()
     // validation
+    // console.log(place, "ád")
+    // console.log(props,"asd")
     if (_validation(true).isValid) {
-      props.history.push('/admin/hotels')
+      props.history.push('/admin/restaurants')
     }
   }
   return (
     <div>
       <Row>
         <Col >
-          <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Tên nhà hàng:</Form.Label>
-            <Form.Control placeholder="Tên nhà hàng" value={place.name} onChange={(e) => onChange(e, 'name')} />
-            <div className="error">
-              {validationResult.name && validationResult.name.isInvalid && validationResult.name.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Mô tả:</Form.Label>
-            <Form.Control placeholder="Mô tả" value={place.content} onChange={(e) => onChange(e, 'content')} rows='4' />
-            <div className="error">
-              {validationResult.content && validationResult.content.isInvalid && validationResult.content.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Địa chỉ:</Form.Label>
-            <Form.Control placeholder="Địa chỉ" value={place.street_address} onChange={(e) => onChange(e, 'street_address')} rows='4' />
-            <div className="error">
-              {validationResult.street_address && validationResult.street_address.isInvalid && validationResult.street_address.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Địa chỉ chi tiết* :</Form.Label>
-            <Form.Control placeholder="Địa chỉ chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
-            <div className="error">
-              {validationResult.extended_address && validationResult.extended_address.isInvalid && validationResult.extended_address.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col} lg="6">
-            <Form.Label className="title-weight-400">Số Điện Thoại* :</Form.Label>
-            <Form.Control placeholder="Số Điện Thoại" type='number' value={place.mobile} className='input-number' onChange={(e) => onChange(e, 'mobile')} />
-            <div className="error">
-              {validationResult.mobile && validationResult.mobile.isInvalid && validationResult.mobile.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Địa chỉ chi tiết* :</Form.Label>
-            <Form.Control placeholder="Địa chỉ chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
-            <div className="error">
-              {validationResult.extended_address && validationResult.extended_address.isInvalid && validationResult.extended_address.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Loại món ăn* :</Form.Label>
-            <Form.Control placeholder="Loại món ăn" type='number' value={place.food_category} className='input-number' onChange={(e) => onChange(e, 'food_category')} />
-            <div className="error">
-              {validationResult.food_category && validationResult.food_category.isInvalid && validationResult.food_category.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col} >
-            <Form.Label className="title-weight-400">Bữa ăn* :</Form.Label>
-            <Form.Control placeholder="Bữa ăn" value={place.meal} className='input-number' onChange={(e) => onChange(e, 'meal')} />
-            <div className="error">
-              {validationResult.meal && validationResult.meal.isInvalid && validationResult.meal.message}
-            </div>
-          </Form.Group>
-          <Form.Group as={Col} >
-            <Form.Label className="title-weight-400">Chế độ ăn* :</Form.Label>
-            <Form.Control placeholder="Chế độ ăn" type='number' value={place.special_diet} className='input-number' onChange={(e) => onChange(e, 'special_diet')} />
-          </Form.Group>
+          <Form noValidate={true} autoComplete="off">
+
+            <Form.Group as={Col}>
+              <Form.Label className="title-weight-400">Tên nhà hàng* :</Form.Label>
+              <Form.Control placeholder="Tên nhà hàng" value={place.name} onChange={(e) => onChange(e, 'name')} />
+              <div className="error">
+                {validationResult.name && validationResult.name.isInvalid && validationResult.name.message}
+              </div>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label className="title-weight-400">Mô tả* :</Form.Label>
+              <Form.Control placeholder="Mô tả" value={place.content} onChange={(e) => onChange(e, 'content')} rows='4' />
+              <div className="error">
+                {validationResult.content && validationResult.content.isInvalid && validationResult.content.message}
+              </div>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label className="title-weight-400">Địa chỉ:</Form.Label>
+              <Form.Control placeholder="Địa chỉ" value={place.street_address} onChange={(e) => onChange(e, 'street_address')} rows='4' />
+              <div className="error">
+                {validationResult.street_address && validationResult.street_address.isInvalid && validationResult.street_address.message}
+              </div>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label className="title-weight-400">Địa chỉ chi tiết* :</Form.Label>
+              <Form.Control placeholder="Địa chỉ chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
+              <div className="error">
+                {validationResult.extended_address && validationResult.extended_address.isInvalid && validationResult.extended_address.message}
+              </div>
+            </Form.Group>
+            <Form.Group as={Col} lg="6">
+              <Form.Label className="title-weight-400">Số Điện Thoại* :</Form.Label>
+              <Form.Control placeholder="Số Điện Thoại" type='number' value={place.mobile} className='input-number' onChange={(e) => onChange(e, 'mobile')} />
+              <div className="error">
+                {validationResult.mobile && validationResult.mobile.isInvalid && validationResult.mobile.message}
+              </div>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label className="title-weight-400">Loại món ăn* :</Form.Label>
+              <Form.Control placeholder="Loại món ăn" value={place.food_category} className='input-number' onChange={(e) => onChange(e, 'food_category')} />
+              <div className="error">
+                {validationResult.food_category && validationResult.food_category.isInvalid && validationResult.food_category.message}
+              </div>
+            </Form.Group>
+            <Form.Group as={Col} >
+              <Form.Label className="title-weight-400">Bữa ăn* :</Form.Label>
+              <Form.Control placeholder="Bữa ăn" value={place.meal} className='input-number' onChange={(e) => onChange(e, 'meal')} />
+              <div className="error">
+                {validationResult.meal && validationResult.meal.isInvalid && validationResult.meal.message}
+              </div>
+            </Form.Group>
+            <Form.Group as={Col} >
+              <Form.Label className="title-weight-400">Chế độ ăn* :</Form.Label>
+              <Form.Control placeholder="Chế độ ăn" value={place.special_diet} className='input-number' onChange={(e) => onChange(e, 'special_diet')} />
+              <div className="error">
+                {validationResult.special_diet && validationResult.special_diet.isInvalid && validationResult.special_diet.message}
+              </div>
+            </Form.Group>
+          </Form>
+
         </Col>
 
         <Col >

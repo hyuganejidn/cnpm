@@ -1,6 +1,6 @@
 const axios = require('axios')
 const url = process.env.REACT_APP_BASE_URL 
-console.log(url, "@url")
+console.log(url, '@url')
 axios.defaults.baseURL = `${url}/api`
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
@@ -12,7 +12,7 @@ axios.interceptors.request.use(function (config) {
     config.headers.authorization = `Bearer ${token}`
   }
 
-  if (config.method === 'post' && config.url === `/users`) {
+  if (config.method === 'post' && config.url === '/users') {
     delete config.headers['authorization']
   }
   return config;

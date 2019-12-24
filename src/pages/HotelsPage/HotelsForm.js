@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col, Button, Form, } from "react-bootstrap";
-import validator from "validator";
-import { IoIosClose } from "react-icons/io";
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Button, Form, } from 'react-bootstrap';
+import validator from 'validator';
+import { IoIosClose } from 'react-icons/io';
 
-import "../../styles/ButtonStyle.css";
-import "../../styles/page/PlacesPage/PlacesPage.css";
-import { Select, Images, TableWithLoading } from "../../components";
+import '../../styles/ButtonStyle.css';
+import '../../styles/page/PlacesPage/PlacesPage.css';
+import { Select, Images, TableWithLoading } from '../../components';
 import { FormValidator, createServiceHotel } from '../../services'
 
 const formValidator = new FormValidator([
   {
-    field: "name",
+    field: 'name',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập tên địa điểm"
+    message: 'Vui lòng nhập tên địa điểm'
   },
   {
-    field: "content",
+    field: 'content',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập địa điểm"
+    message: 'Vui lòng nhập địa điểm'
   },
   {
-    field: "street_address",
+    field: 'street_address',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập địa chỉ"
+    message: 'Vui lòng nhập địa chỉ'
   },
   {
     field: 'mobile',
@@ -35,22 +35,22 @@ const formValidator = new FormValidator([
     message: 'Vui lòng nhập 10 hoặc 11 số.'
   },
   {
-    field: "extended_address",
+    field: 'extended_address',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập mô tả địa điểm"
+    message: 'Vui lòng nhập mô tả địa điểm'
   },
   {
-    field: "price",
+    field: 'price',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập giá tiền"
+    message: 'Vui lòng nhập giá tiền'
   },
   {
-    field: "property_amenities",
+    field: 'property_amenities',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập các dịch vụ"
+    message: 'Vui lòng nhập các dịch vụ'
   },
 ]);
 

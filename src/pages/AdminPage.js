@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from 'react';
 
-import { DashboardPage, UsersPage, PlacesPage, RequestsPage, ReportsPage, RestaurantsRoute, TransportationsRoute, AttractionsRoute, HotelsRoute } from '../pages'
+import { Blogs, UsersPage, PlacesPage, RequestsPage, ReportsPage, RestaurantsRoute, TransportationsRoute, AttractionsRoute, HotelsRoute } from '../pages'
 import { Header, HeaderSignOut, PrivateRoute } from '../components'
 
 import '../styles/AdminPage.css'
@@ -14,7 +14,7 @@ const AdminPage = ({ match, history }) => {
       <div className="wrapper">
         <HeaderSignOut history={history} />
         <div className="main-style">
-          <PrivateRoute path={`${match.path}`} exact component={DashboardPage} />
+          <PrivateRoute path={`${match.path}/blogs`} exact component={Blogs} />
           {/* <PrivateRoute path={`${match.path}/profile`} exact component={ProfilePage} /> */}
           <PrivateRoute path={`${match.path}/users`} component={UsersPage} />
           <PrivateRoute path={`${match.path}/places`} component={PlacesPage} />

@@ -12,6 +12,10 @@
 .btn-margin-left-8 {
   margin-left: 8px;
 }
+.error {
+  color: #ff3547;
+  font-size: 0.8em;
+}
 .align-center-icon {
   display: flex;
   align-items: center;

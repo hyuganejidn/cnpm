@@ -1,82 +1,174 @@
-import React, { useState } from 'react';
-import { Button, Form, Navbar, FormControl } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { FaSearch, FaUserAltSlash, FaUserCheck } from "react-icons/fa"
-import { IoIosAddCircle } from "react-icons/io"
-import "../../styles/ButtonStyle.css"
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react';
+import { Button, Form, Navbar, FormControl } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import { FaSearch, } from 'react-icons/fa'
+import { GoTools } from 'react-icons/go';
+import queryString from 'query-string'
+
+import { IoIosAddCircle } from 'react-icons/io'
+import '../../styles/ButtonStyle.css'
 import '../../styles/LabelStyle.css'
 import '../../styles/page/RestaurantsPage/RestaurantsPage.css'
-import { TableWithLoading, Select, ConfirmModal } from "../../components"
-function RestaurantsPage() {
-
-  const [restaurants, setRestaurants] = useState([
-    { "name": "L' Italiano Restaurant", "street_address": "An Thuong 30", "extended_address": "My An, Ngu Hanh Son", "locality": "Da Nang 550000, ", "country_name": "Vietnam", "mobile": "+84 90 606 94 58", "food_category": "Italian, Pizza, Mediterranean, European", "special_diet": "Vegetarian Friendly, Vegan Options", "meal": "Breakfast, Lunch, Dinner, Brunch, Drinks" },
-    { "name": "Bep Cuon Da Nang", "street_address": "54 Nguyen Van Thoai", "extended_address": "Ngu Hanh Son", "locality": "Da Nang 550000, ", "country_name": "Vietnam", "mobile": "+84 70 2689 989", "food_category": "Vietnamese, Asian", "special_diet": "Lunch, Dinner, Brunch, Drinks", "meal": "Buffet, Street Parking, Serves Alcohol, Full Bar, Wine and Beer, Family style", }
-  ])
+import { TableWithLoading, ConfirmModal } from '../../components'
+import { getServiceRes, searchService } from '../../services';
+function RestaurantsPage(props) {
   const columns = [{
-    name: "Tên nhà hàng",
-    selector: "name",
+    name: 'Tên nhà hàng',
+    selector: 'name',
     sortable: true,
-    width: '200px',
+    width: '150px',
     wrap: true,
     hide: 'sm'
   },
   {
-    name: "Địa chỉ",
-    selector: "street_address",
+    name: 'Địa chỉ',
+    selector: 'street_address',
     sortable: true,
-    width: '200px',
+    width: '180px',
+    wrap: true
+  }, {
+    name: 'Chi tiết',
+    selector: 'extended_address',
+    sortable: true,
+    width: '180px',
     wrap: true
   },
+
   {
-    name: "Số điện thoại",
-    selector: "mobile",
+    name: 'Số điện thoại',
+    selector: 'mobile',
+    sortable: true,
+    width: '150px',
+    center: true,
+  },
+  {
+    name: 'Loại thực phẩm',
+    selector: 'food_category',
+    sortable: true,
+    width: '180px',
+    center: true,
+  }, {
+    name: 'Bữa ăn',
+    selector: 'meal',
     sortable: true,
     width: '180px',
     center: true,
   },
-  
-  // {
-  //   name: "User requset",
-  //   width: 170,
-  //   cell: (row) => {
-  //     return (
-  //       <Link to="/admin/restaurants/reports">
-  //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
-  //           Requests
-  //         </Button>
-  //       </Link>
-  //     )
-  //   }
-  // },
   {
-    name: "User report",
-    width: 170,
+    name: '',
+    // width: 200,
     cell: (row) => {
       return (
-        <Link to="/admin/restaurants/reports">
-          <Button variant="success" className="btn-padding-9 btn-add-tablet">
-            Hiển thị<IoIosAddCircle />
+        <div className="">
+          {/* <Button
+            variant="info"
+            className="btn-margin-right btn-pd btn"
+            onClick={() =>
+              props.history.push(`/admin/restaurants/edit/${row.id}`)
+            }
+          >
+            Sửa <GoTools />
+          </Button> */}
+          <Button
+            variant="danger"
+            className="btn-pd btn"
+            onClick={() => {
+              return destroy(row);
+            }}
+          >
+            Ẩn
           </Button>
-        </Link>
+        </div>
       )
     }
   },
+    // {
+    //   name: "User requset",
+    //   width: 170,
+    //   cell: (row) => {
+    //     return (
+    //       <Link to="/admin/restaurants/reports">
+    //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
+    //           Requests
+    //         </Button>
+    //       </Link>
+    //     )
+    //   }
+    // },
+    // {
+    //   name: "User report",
+    //   width: 170,
+    //   cell: (row) => {
+    //     return (
+    //       <Link to="/admin/restaurants/reports">
+    //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
+    //           Hiển thị<IoIosAddCircle />
+    //         </Button>
+    //       </Link>
+    //     )
+    //   }
+    // },
   ]
   const [isLoading, setLoading] = useState(false);
+  const [restaurants, setRestaurants] = useState([])
+  const [currentRow, setCurrentRow] = useState({});
+  const [modalShow, setModalShow] = useState(false);
+  let params = queryString.parse(props.location.search);
+  console.log('aaaa')
+  if (!params.keyword) {
+    console.log(params.keyword)
+    console.log(true)
+    params.keyword = ""
+  }
+  if (!params.page) {
+    params.page = "1";
+  }
+  if (!params.amount) {
+    params.amount = "8";
+  }
   const [textSearchValue, setTextSearchValue] = useState('');
 
+  useEffect(() => {
+    console.log('asda')
+    console.log(params, "params")
+    setLoading(true)
+    getServiceRes(params.amount, params.page, params.keyword)
+      .then(response => {
+        console.log(response.data.message, '@@@@@')
+        setRestaurants([...response.data.message])
+      })
+      .finally(() => setLoading(false))
+  }, [props.location.search])
+
+  const _destroy = () => {
+    setModalShow(false);
+  };
+  const destroy = row => {
+    setCurrentRow(row);
+    setModalShow(true);
+  };
   const onSearchSubmit = e => {
-    // e.preventDefault();
-    // props.history.push(`?page=1&limit=${params.limit}&q=${textSearchValue}`);
+    e.preventDefault();
+    console.log(textSearchValue)
+    console.log(params.keyword)
+    props.history.push(`?page=1&amount=${params.amount}&keywork=${textSearchValue}`);
   };
   const onSearchChange = e => {
     // e.preventDefault();
-    // params.q = e.target.value;
-    // setTextSearchValue(params.q);
+    // console.log(e.target.value)
+    console.log(params)
+    // params = { ...params, ['keyword']: e.target.value }
+    params.keyword = e.target.value;
+    console.log(params.keyword, 'keyword')
+    setTextSearchValue(e.target.value);
   };
   return (
     <div>
+      <ConfirmModal show={modalShow} onConfirm={_destroy} confirmtext="Bạn có chắc chắn ẩn không?" onHide={() => setModalShow(false)} />
+
       <h1>Quản lý nhà hàng coffee</h1>
       <Navbar className="justify-content-between">
         <div>
@@ -94,7 +186,7 @@ function RestaurantsPage() {
             </Button>
           </Form>
         </div>
-        <div>
+        {/* <div>
           <Link to="/admin/restaurants/reports">
             <Button variant="success" className="btn-padding-9 btn-add-tablet">
               Requests
@@ -105,13 +197,14 @@ function RestaurantsPage() {
               Thêm nhà hàng <IoIosAddCircle />
             </Button>
           </Link>
-        </div>
+        </div> */}
       </Navbar>
       <TableWithLoading
         className="style-table-customer"
         isLoading={isLoading}
         columns={columns}
         data={restaurants}
+        isLoading={isLoading}
         pagination={true}
         paginationServer={true}
         paginationDefaultPage={2}
@@ -123,7 +216,6 @@ function RestaurantsPage() {
         persistTableHead={true}
         selectableRows={true}
         clearSelectedRows={true}
-        clearSelectedRows={true}
         onChangePage={page => {
           console.log(page)
         }}
@@ -132,7 +224,7 @@ function RestaurantsPage() {
         }}
         paginationRowsPerPageOptions={[20, 50, 100]}
       />
-    </div>
+    </div >
   );
 }
 

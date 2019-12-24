@@ -52,7 +52,7 @@ const ProfilePage = (props) => {
   useEffect(() => {
     setAccountUser({
       username: 'xuanhung',
-      fullname: "Xuân Hùng",
+      fullname: 'Xuân Hùng',
       email: 'xuanhung@gmail.com',
       password: ''
     })

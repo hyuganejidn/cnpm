@@ -1,6 +1,6 @@
-import React from "react";
-import { Breadcrumb } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import React from 'react';
+import { Breadcrumb } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { HotelsForm } from '../HotelsPage'
 
 function HotelsNew(props) {

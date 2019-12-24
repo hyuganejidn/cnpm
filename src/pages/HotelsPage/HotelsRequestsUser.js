@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Breadcrumb, Button } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { TableWithLoading, RequestsUserDetail } from "../../components";
+import React, { useState } from 'react';
+import { Breadcrumb, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { TableWithLoading, RequestsUserDetail } from '../../components';
 
 function HotelsRequestsUser(props) {
   // const onCreate = food => {
@@ -20,29 +20,29 @@ function HotelsRequestsUser(props) {
   { username: 'xuanhung1', fullname: 'Xuân Hùng B', time: 'as' }])
 
   const columns = [{
-    name: "Tên đăng nhâp",
-    selector: "username",
+    name: 'Tên đăng nhâp',
+    selector: 'username',
     sortable: true,
-    width: "180px",
+    width: '180px',
     wrap: true,
     hide: 'sm'
   },
   {
-    name: "Tên đầy đủ",
-    selector: "fullname",
+    name: 'Tên đầy đủ',
+    selector: 'fullname',
     sortable: true,
     width: '150px',
     wrap: true
   },
   {
-    name: "Thời gian",
-    selector: "time",
+    name: 'Thời gian',
+    selector: 'time',
     sortable: true,
     width: '200px',
     center: true,
   }, {
-    name: "",
-    width: "200px",
+    name: '',
+    width: '200px',
     cell: (row) => {
       return (
         <Button variant="info" type="submit" className="btn btn-padding-7" onClick={() => detailFeedback(row)}>
@@ -55,11 +55,11 @@ function HotelsRequestsUser(props) {
     setModalShow(false)
   }
   const detailFeedback = (row) => {
-    console.log(row, "asdf")
+    console.log(row, 'asdf')
     console.log('asdf')
     setModalShow(true)
     setUsernameRequest(row.fullname)
-    setContentRequestText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel diam quis dui dignissim interdum id et dui. Quisque eget aliquam augue, vel accumsan velit. Nam erat libero, egestas maximus elit in, faucibus tristique velit. Vivamus risus nisi, auctor vitae pellentesque et, pulvinar ut diam. Cras nec mauris tellus. Praesent vehicula nibh consectetur tempor vehicula. Vivamus ultrices enim sapien, non condimentum mi eleifend posuere. Nulla in felis tristique, pulvinar nunc et, feugiat ipsum. Mauris lobortis tincidunt magna, malesuada placerat justo pharetra sed. Nunc hendrerit laoreet ante, ut ultricies ante bibendum sed. Proin ut sodales metus, eu lobortis ligula. Pellentesque massa eros, posuere ac ante vel, fringilla tincidunt elit. Ae")
+    setContentRequestText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel diam quis dui dignissim interdum id et dui. Quisque eget aliquam augue, vel accumsan velit. Nam erat libero, egestas maximus elit in, faucibus tristique velit. Vivamus risus nisi, auctor vitae pellentesque et, pulvinar ut diam. Cras nec mauris tellus. Praesent vehicula nibh consectetur tempor vehicula. Vivamus ultrices enim sapien, non condimentum mi eleifend posuere. Nulla in felis tristique, pulvinar nunc et, feugiat ipsum. Mauris lobortis tincidunt magna, malesuada placerat justo pharetra sed. Nunc hendrerit laoreet ante, ut ultricies ante bibendum sed. Proin ut sodales metus, eu lobortis ligula. Pellentesque massa eros, posuere ac ante vel, fringilla tincidunt elit. Ae')
   }
   return (
     <>

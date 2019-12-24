@@ -3,12 +3,12 @@ import { Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import SideNav, { NavItem, NavIcon } from '@trendmicro/react-sidenav'
 import {
-  FaHome, FaUserFriends, FaTrafficLight
-} from "react-icons/fa"
-import { MdReportProblem } from "react-icons/md"
-import { IoIosRestaurant, IoIosBusiness, IoIosGitPullRequest } from "react-icons/io"
-import { GoRequestChanges } from "react-icons/go";
-import { GiTransportationRings } from "react-icons/gi";
+  FaHome, FaUserFriends, FaTrafficLight, FaUserAlt
+} from 'react-icons/fa'
+import { MdReportProblem } from 'react-icons/md'
+import { IoIosRestaurant, IoIosBusiness, IoIosGitPullRequest } from 'react-icons/io'
+import { GoRequestChanges } from 'react-icons/go';
+import { GiTransportationRings } from 'react-icons/gi';
 
 import '../styles/components/Header.css'
 import '../styles/components/HeaderSidenav.css'
@@ -19,20 +19,6 @@ const Header = props => {
     <SideNav expanded={expanded} onToggle={(e) => setExpanded(e)}>
       <SideNav.Toggle />
       <SideNav.Nav>
-
-        {/* <LinkContainer to="/admin/profile" exact>
-          <NavItem eventKey="">
-            <NavIcon>
-              <FaUserAlt />
-            </NavIcon>
-            <div className="sidebar-nav">
-              <LinkContainer to="/admin/profile" exact>
-                <Nav.Link className="navlink-style">Quản lý tài khoản</Nav.Link>
-              </LinkContainer>
-            </div>
-          </NavItem>
-        </LinkContainer> */}
-
         <LinkContainer to="/admin/users" exact>
           <NavItem eventKey="">
             <NavIcon>
@@ -107,6 +93,18 @@ const Header = props => {
             </div>
           </NavItem>
         </LinkContainer> */}
+        <LinkContainer to="/admin/blogs" exact>
+          <NavItem eventKey="">
+            <NavIcon>
+              <FaUserAlt />
+            </NavIcon>
+            <div className="sidebar-nav">
+              <LinkContainer to="/admin/blogs" exact>
+                <Nav.Link className="navlink-style">Quản lý blogs</Nav.Link>
+              </LinkContainer>
+            </div>
+          </NavItem>
+        </LinkContainer>
 
         <LinkContainer to="/admin/requests" exact>
           <NavItem eventKey="">
@@ -128,7 +126,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/reports" exact>
-                <Nav.Link className="navlink-style">Báo cáo người dùng</Nav.Link>
+                <Nav.Link className="navlink-style">Quản lý report</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>

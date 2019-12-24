@@ -7,7 +7,7 @@ function WithLoading(Component) {
     if (!isLoading) return (<Component {...props} />);
     return (
       <div
-        style={{ width: "100%", height: "100", display: 'flex', justifyContent: 'center', alignContent: 'center' }}
+        style={{ width: '100%', height: '100', display: 'flex', justifyContent: 'center', alignContent: 'center' }}
       >
         <Loader type="ThreeDots" color="#007bff" />
       </div>

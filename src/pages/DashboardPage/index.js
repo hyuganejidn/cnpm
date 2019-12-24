@@ -1,5 +1,5 @@
-import DashboardPage from './DashboardPage'
+import Blogs from './Blogs'
 
 export {
-  DashboardPage
+  Blogs
 }

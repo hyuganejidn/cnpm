@@ -1,6 +1,7 @@
 import React from 'react'
-import { RestaurantsNew, RestaurantsPage, RestaurantsRequestUser, RestaurantsReportsUser } from '../RestaurantsPage'
+import { RestaurantsNew, RestaurantsPage,EditRestaurants, RestaurantsRequestUser, RestaurantsReportsUser } from '../RestaurantsPage'
 import { PrivateRoute } from '../../components/'
+
 function RestaurantsRoute({ match }) {
   return (
     <div>
@@ -8,6 +9,7 @@ function RestaurantsRoute({ match }) {
       <PrivateRoute path={`${match.path}/new`} exact component={RestaurantsNew} />
       <PrivateRoute path={`${match.path}/requests`} exact component={RestaurantsRequestUser} />
       <PrivateRoute path={`${match.path}/reports`} exact component={RestaurantsReportsUser} />
+      <PrivateRoute path={`${match.path}/edit/:id`} exact component={EditRestaurants} />
 
     </div>
   )

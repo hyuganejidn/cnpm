@@ -19,7 +19,7 @@ export const createImages = (photos) => {
       'Content-Type': 'multipart/form-data',
     }
   }
-  return axios.post(`/images/services/1`, formData, config)
+  return axios.post('/images/services/1', formData, config)
 }
 
 // export const deleteImage = (id) => {

@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col, Button, Table, Image, Form, Modal, FormControl } from "react-bootstrap";
-import validator from "validator";
-import { IoIosClose } from "react-icons/io";
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Button, Table, Image, Form, Modal, FormControl } from 'react-bootstrap';
+import validator from 'validator';
+import { IoIosClose } from 'react-icons/io';
 
-import "../../styles/ButtonStyle.css";
-import "../../styles/page/PlacesPage/PlacesPage.css";
-import { Select, Images, TableWithLoading } from "../../components";
+import '../../styles/ButtonStyle.css';
+import '../../styles/page/PlacesPage/PlacesPage.css';
+import { Select, Images, TableWithLoading } from '../../components';
 import { FormValidator } from '../../services'
 
 const formValidator = new FormValidator([
   {
-    field: "title",
+    field: 'title',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập tên địa điểm"
+    message: 'Vui lòng nhập tên địa điểm'
   },
   {
-    field: "content",
+    field: 'content',
     method: validator.isEmpty,
     validWhen: false,
-    message: "Vui lòng nhập mô t địa điểm"
+    message: 'Vui lòng nhập mô t địa điểm'
   }
 ]);
 

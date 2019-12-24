@@ -1,10 +1,10 @@
 const axios = require('axios')
 
 export const createCategories = (name, prop_table_name) => {
-  return axios.post(`/categories/`, { name, prop_table_name })
+  return axios.post('/categories/', { name, prop_table_name })
 }
 export const listCategories = () => {
-  return axios.get(`/categories/`)
+  return axios.get('/categories/')
 }
 export const categoryHotel = (id = 1) => {
   return axios.get(`/categories/${id}`)

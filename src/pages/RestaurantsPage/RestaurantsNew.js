@@ -1,6 +1,6 @@
-import React from "react";
-import { Breadcrumb } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import React from 'react';
+import { Breadcrumb } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { RestaurantsForm } from '../RestaurantsPage'
 
 function RestaurantsNew(props) {
@@ -21,8 +21,8 @@ function RestaurantsNew(props) {
           <Breadcrumb.Item>Danh sách nhà hàng</Breadcrumb.Item>
         </LinkContainer>
         <Breadcrumb.Item active>Thêm nhà hàng</Breadcrumb.Item>
-      </Breadcrumb>
-      <RestaurantsForm
+      </Breadcrumb> 
+      <RestaurantsForm  {...props}
       // onCreate={onCreate}
       // onCreateAndContinue={onCreateAndContinue}
       />

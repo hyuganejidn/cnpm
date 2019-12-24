@@ -1,72 +1,115 @@
-import React, { useState } from 'react';
-import { Button, Form, Navbar, FormControl } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { FaSearch, FaUserAltSlash, FaUserCheck } from "react-icons/fa"
-import { IoIosAddCircle } from "react-icons/io"
-import "../../styles/ButtonStyle.css"
+/* eslint-disable react/display-name */
+import React, { useState, useEffect } from 'react';
+import { Button, Form, Navbar, FormControl } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { FaSearch, FaTrash, FaUserCheck } from 'react-icons/fa'
+import { GoTools } from 'react-icons/go';
+import { IoIosAddCircle } from 'react-icons/io'
+import '../../styles/ButtonStyle.css'
 import '../../styles/LabelStyle.css'
 import '../../styles/page/RestaurantsPage/RestaurantsPage.css'
-import { TableWithLoading, Select, ConfirmModal } from "../../components"
+import { TableWithLoading, Select, ConfirmModal } from '../../components'
+import { getServiceAtt } from '../../services';
 
-function AttractionsPage() {
-  const [attractions, setAttractions] = useState([
-    { "name": "Sun World Danang Wonders", "street_address": "01 Phan Dang Luu", "extended_address": "Hai Chau", "locality": "Da Nang 550000, ", "country_name": "Vietnam", },
-    { "name": "Golden Bridge", "street_address": null, "extended_address": "Ba Na Hills", "locality": "Da Nang 550000, ", "country_name": "Vietnam", },
-    { "name": "My Khe Beach", "street_address": null, "extended_address": null, "locality": "Da Nang, ", "country_name": "Vietnam", "feedback": ["Very nice beach and good restaurant along the board walk you can rent beach loungers and umbrellas as it dose get very hot they keep the beach clean", "A perfect beach to enjoy with all the good things included clean and long smooth beach, white sand, amazing blue water, many my beautiful private pictures taken here.", "The sand is soft and provides a cushion if you want to take a long walk down the long beach overlooking the colorful boats and distant island."], },
-    { "name": "Da Nang Museum of Cham Sculpture", "street_address": "No 2, 2 Thang 9 Street", "extended_address": null, "locality": "Da Nang, ", "country_name": "Vietnam", "feedback": ["If you have visited the My Son temple complexes then this adds a wonderful layer of depth, as it shows in sumptuous detail the surface decoration the buildings would have contained, in addition to altar pieces and...", "Strongly recommend getting the audio guide as it helps you appreciate the history better.", "There is a great collection of Cham sculpture here and excellently presented with explanations in English."], },
-  ])
+function AttractionsPage(props) {
+  const [modalShow, setModalShow] = useState(false);
+  const [currentRow, setCurrentRow] = useState({});
+  const [attractions, setAttractions] = useState([])
   const columns = [{
-    name: "Attractions",
-    selector: "name",
+    name: 'Attractions',
+    selector: 'name',
     sortable: true,
     width: '250px',
     wrap: true
   },
   {
-    name: "Địa chỉ",
-    selector: "street_address",
+    name: 'Địa chỉ',
+    selector: 'street_address',
     sortable: true,
     width: '250px',
     wrap: true
   },
   {
-    name: "Đánh giá",
-    selector: "feedback",
+    name: 'Chi tiết',
+    selector: 'extended_address',
     sortable: true,
     width: '180px',
-    // wrap: true
+    wrap: true
   },
-  // {
-  //   name: "User requset",
-  //   width: 200,
-  //   cell: (row) => {
-  //     return (
-  //       <Link to="/admin/attractions/requests">
-  //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
-  //           Hiển thị<IoIosAddCircle />
-  //         </Button>
-  //       </Link>
-  //     )
-  //   }
-  // },
   {
-    name: "User report",
-    width: 200,
+    name: 'Số điện thoại',
+    selector: 'mobile',
+    sortable: true,
+    width: '150px',
+    center: true,
+  },
+  {
+    name: 'Ghi chú',
+    selector: 'note',
+    sortable: true,
+    width: '150px',
+    center: true,
+  },
+  {
+    name: '',
+    // width: 200,
     cell: (row) => {
       return (
-        <Link to="/admin/attractions/reports">
-          <Button variant="success" className="btn-padding-9 btn-add-tablet">
-            Hiển thị<IoIosAddCircle />
+        <div className="">
+          {/* <Button
+            variant="info"
+            className="btn-margin-right btn-pd btn"
+            onClick={() =>
+              props.history.push(`/admin/attractions/edit/${row.id}`)
+            }
+          >
+            Sửa <GoTools />
+          </Button> */}
+          <Button
+            variant="danger"
+            className="btn-pd btn"
+            onClick={() => {
+              return destroy(row);
+            }}
+          >
+            Ẩn
           </Button>
-        </Link>
+        </div>
       )
     }
   },
+    // {
+    //   name: 'User report',
+    //   width: 200,
+    //   cell: (row) => {
+    //     return (
+    //       <Link to="/admin/attractions/reports">
+    //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
+    //           Hiển thị<IoIosAddCircle />
+    //         </Button>
+    //       </Link>
+    //     )
+    //   }
+    // },
   ]
   const [isLoading, setLoading] = useState(false);
-
   const [textSearchValue, setTextSearchValue] = useState('');
-
+  useEffect(() => {
+    console.log('asda')
+    setLoading(true)
+    getServiceAtt()
+      .then(response => {
+        console.log(response.data.message, '@@@@@')
+        setAttractions([...response.data.message])
+      })
+      .finally(() => setLoading(false))
+  }, [props.location.search])
+  const destroy = row => {
+    setCurrentRow(row);
+    setModalShow(true);
+  };
+  const _destroy = () => {
+  };
   const onSearchSubmit = e => {
     // e.preventDefault();
     // props.history.push(`?page=1&limit=${params.limit}&q=${textSearchValue}`);
@@ -94,7 +137,7 @@ function AttractionsPage() {
             </Button>
           </Form>
         </div>
-        <div>
+        {/* <div>
           <Link to="/admin/attractions/requests">
             <Button variant="success" className="btn-padding-9 btn-add-tablet">
               Requests
@@ -105,7 +148,7 @@ function AttractionsPage() {
               Thêm attractions <IoIosAddCircle />
             </Button>
           </Link>
-        </div>
+        </div> */}
       </Navbar>
       <TableWithLoading
         className="style-table-customer"

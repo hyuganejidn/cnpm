@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { Button, Form, Row, Alert } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Button, Form, Row, Alert } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import "../styles/LoginPage.css";
-import "../styles/LabelStyle.css";
-import { auth } from "../services";
+import '../styles/LoginPage.css';
+import '../styles/LabelStyle.css';
+import { auth } from '../services';
 
 const LoginPage = props => {
   if (localStorage.getItem('token')) {
     props.history.push('/admin')
   }
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showText, setShowText] = useState(false);
 
   const loginFormSubmitHandler = (e) => {
@@ -21,6 +21,8 @@ const LoginPage = props => {
       .then(response => {
         console.log(response.data.message.user)
         localStorage.setItem('token', response.data.message.user.token)
+        localStorage.setItem('user', response.data.message.user.fullname)
+        localStorage.setItem('userid', response.data.message.user.id)
         props.history.push('/admin/users')
       })
       .catch((error) => {

@@ -1,70 +1,79 @@
-import React, { useState } from 'react';
-import { Button, Form, Navbar, FormControl } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { IoIosAddCircle } from "react-icons/io"
-import { FaSearch, FaUserAltSlash, FaUserCheck } from "react-icons/fa"
-
-import "../../styles/ButtonStyle.css"
+/* eslint-disable react/display-name */
+import React, { useState, useEffect } from 'react';
+import { Button, Form, Navbar, FormControl } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { IoIosAddCircle } from 'react-icons/io'
+import { FaSearch, FaTrash, FaUserCheck } from 'react-icons/fa'
+import { GoTools } from 'react-icons/go';
+import '../../styles/ButtonStyle.css'
 import '../../styles/LabelStyle.css'
 import '../../styles/page/RestaurantsPage/RestaurantsPage.css'
 
-import { TableWithLoading, Select, ConfirmModal } from "../../components"
+import { TableWithLoading, Select, ConfirmModal } from '../../components'
+import { getServiceTrans, searchService } from '../../services';
 
-function TransportationsForm() {
-  const [textSearchValue, setTextSearchValue] = useState('');
-  const [isLoading, setLoading] = useState(false);
-  const [transportations, setTransportations] = useState([{
-    name: "Taxi Hàng Không (Airport Taxi)",
-    phone_number: "02363272727",
-    website: "https://taxiairport.vn/"
-  }, {
-    name: "Taxi Mai Linh",
-    phone_number: '02363565656',
-    website: "https://mailinh.vn/"
-  }, {
-    name: "Taxi Sông Hàn",
-    phone_number: '02363727272',
-    website: "https://taxiairport.vn/"
-  }, {
-    name: "Taxi VinaSun Green",
-    phone_number: '02363623543',
-    website: "http://www.vinasuntaxi.com/"
-  }])
-
+function TransportationsForm(props) {
   const columns = [{
-    name: "Transortations",
-    selector: "name",
+    name: 'Transortations',
+    selector: 'name',
     sortable: true,
     width: '250px',
     wrap: true
   },
   {
-    name: "Số điện thoại",
-    selector: "phone_number",
+    name: 'Số điện thoại',
+    selector: 'phone_number',
     sortable: true,
     width: '170px',
     wrap: true
   },
   {
-    name: "Web Site",
-    selector: "website",
+    name: 'Web Site',
+    selector: 'website',
     sortable: true,
     width: '250px',
     // wrap: true
-  },
-   {
-    name: "User report",
-    width: 200,
+  }, {
+    name: '',
+    // width: 200,
     cell: (row) => {
       return (
-        <Link to="/admin/transportations/reports">
-          <Button variant="success" className="btn-padding-9 btn-add-tablet">
-            Hiển thị<IoIosAddCircle />
+        <div className="">
+          {/* <Button
+            variant="info"
+            className="btn-margin-right btn-pd btn"
+            onClick={() =>
+              props.history.push(`/admin/transportations/edit/${row.id}`)
+            }
+          >
+            Sửa <GoTools />
+          </Button> */}
+          <Button
+            variant="danger"
+            className="btn-pd btn"
+            onClick={() => {
+              return destroy(row);
+            }}
+          >
+            Ẩn
           </Button>
-        </Link>
+        </div>
       )
     }
   },
+    // {
+    //   name: 'User report',
+    //   width: 200,
+    //   cell: (row) => {
+    //     return (
+    //       <Link to="/admin/transportations/reports">
+    //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
+    //           Hiển thị<IoIosAddCircle />
+    //         </Button>
+    //       </Link>
+    //     )
+    //   }
+    // },
     // {
     //   name: "User requset",
     //   width: 200,
@@ -79,6 +88,24 @@ function TransportationsForm() {
     //   }
     // },
   ]
+
+  const [textSearchValue, setTextSearchValue] = useState('');
+  const [modalShow, setModalShow] = useState(false);
+  const [currentRow, setCurrentRow] = useState({});
+  const [isLoading, setLoading] = useState(false);
+
+  const [transportations, setTransportations] = useState([])
+  useEffect(() => {
+    console.log('asda')
+    setLoading(true)
+    getServiceTrans()
+      .then(response => {
+        console.log(response.data.message, '@@@@@')
+        setTransportations([...response.data.message])
+      })
+      .finally(() => setLoading(false))
+  }, [])
+
   const onSearchSubmit = e => {
     // e.preventDefault();
     // props.history.push(`?page=1&limit=${params.limit}&q=${textSearchValue}`);
@@ -88,8 +115,15 @@ function TransportationsForm() {
     // params.q = e.target.value;
     // setTextSearchValue(params.q);
   };
+  const destroy = row => {
+    setCurrentRow(row);
+    setModalShow(true);
+  };
+  const _destroy = () => {
+  };
   return (
     <div>
+      <ConfirmModal show={modalShow} onConfirm={_destroy} confirmtext="Bạn có chắc chắnẩn không?" onHide={() => setModalShow(false)} />
       <h1>Transportations</h1>
       <Navbar className="justify-content-between">
         <div>
@@ -106,7 +140,7 @@ function TransportationsForm() {
             </Button>
           </Form>
         </div>
-        <div>
+        {/* <div>
           <Link to="/admin/transportations/requests">
             <Button variant="success" className="btn-padding-9 btn-add-tablet">
               Request<IoIosAddCircle />
@@ -117,7 +151,7 @@ function TransportationsForm() {
               Thêm transport <IoIosAddCircle />
             </Button>
           </Link>
-        </div>
+        </div> */}
       </Navbar>
       <TableWithLoading
         className="style-table-customer"

@@ -3,7 +3,7 @@ import { Breadcrumb } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { AttractionsForm } from '../AttractionsPage'
 
-function AttractionsNew(props) {
+function EditAttractions(props) {
   // const onCreate = food => {
   //   // submit api and redirect to ingredients page
   //   return createFood(food).then(() => props.history.push("/admin/foods"));
@@ -12,17 +12,17 @@ function AttractionsNew(props) {
   // const onCreateAndContinue = food => {
   //   return createFood(food);
   // };
-  
+
   return (
     <>
-      <h1 className="title">Attractions</h1>
+      <h1 className="title">Quản Lý khách sạn</h1>
       <Breadcrumb>
-        <LinkContainer to="/admin/attractions">
-          <Breadcrumb.Item>Attractions</Breadcrumb.Item>
+        <LinkContainer to="/admin/hotels">
+          <Breadcrumb.Item>Danh sách khách sạn</Breadcrumb.Item>
         </LinkContainer>
-        <Breadcrumb.Item active>Thêm Attraction</Breadcrumb.Item>
+        <Breadcrumb.Item active>Thêm khách sạn</Breadcrumb.Item>
       </Breadcrumb>
-      <AttractionsForm
+      <AttractionsForm isEdit={true}
       // onCreate={onCreate}
       // onCreateAndContinue={onCreateAndContinue}
       />
@@ -30,4 +30,4 @@ function AttractionsNew(props) {
   );
 }
 
-export default AttractionsNew;
+export default EditAttractions;

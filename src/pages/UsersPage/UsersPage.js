@@ -1,96 +1,63 @@
+/* eslint-disable react/display-name */
 import React, { useState, useEffect } from 'react'
-import { Button, Form, Navbar, FormControl, Modal, Col } from "react-bootstrap"
+import { Button, Form, Navbar, FormControl, Modal, Col } from 'react-bootstrap'
 
-import { FaSearch, FaUserAltSlash, FaUserCheck } from "react-icons/fa"
-
-import { TableWithLoading, Select, ConfirmModal } from "../../components"
+import { FaSearch, FaUserAltSlash, FaUserCheck } from 'react-icons/fa'
+import { parse } from 'query-string'
+import { TableWithLoading, Select, ConfirmModal } from '../../components'
 import '../../styles/page/UsersPage/UsersPage.css'
 import '../../styles/ButtonStyle.css'
 import '../../styles/LabelStyle.css'
 import { grantUser, listUsersRole } from '../../services'
+
+const formatAdmin = (role) => {
+  switch (role) {
+    case 1: return 'Admin'
+    case 2: return "Staff"
+    case 3: return "User"
+    default: return "Block"
+  }
+}
 const UsersPage = (props) => {
-  const [roleObject, setRoleObject] = useState({})
-  const [privilegeUser, setPrivilegeUser] = useState({ value: 3, label: "User" })
-  const [textSearchValue, setTextSearchValue] = useState('');
-  const [currentRow, setCurrentRow] = useState({});
-  const [modalShow, setModalShow] = useState(false);
-  const [isModalProfileUser, setIsModalProfileUser] = useState(false)
-  const [isLoading, setLoading] = useState(false);
-  const [modalShowRole, setModalShowRole] = useState(false)
-  const [currentRoleId, setCurrentRoleId] = useState('')
-  const [roleCurrent, setRoleCurrent] = useState({})
-  const [users, setUsers] = useState([{
-    id: '124212',
-    fullName: 'Võ Xuân Hùng',
-    email: 'xuanhung@gmail.com',
-    username: 'xuanhung',
-    password: '123123',
-    role: 2,
-  },
-  {
-    id: '1241232',
-    fullName: 'Võ Xuân Hùng',
-    email: 'xuanhung1@gmail.com',
-    username: 'xuanhung2',
-    password: '123123',
-    role: 1,
-  },
-  {
-    id: '124412',
-    fullName: 'Võ Xuân Hùng',
-    email: 'xuanhung2@gmail.com',
-    username: 'xuanhung3',
-    password: '123123',
-    role: 0,
-  }, {
-    id: '144212',
-    fullName: 'Võ Xuân Hùng',
-    email: 'xuanhung2@gmail.com',
-    username: 'xuanhung4',
-    password: '123123',
-    role: 0,
-  }])
-  const [amount, setAmount] = useState(20)
-  const [page, setPage] = useState(1)
-  const [role, setRole] = useState(3)
   const columns = [
     {
-      name: "Tên khách hàng",
-      selector: "fullName",
+      name: 'Tên đầy đủ',
+      selector: 'fullName',
       sortable: true,
       width: '200px'
     },
     {
-      name: "Email",
-      selector: "email",
+      name: 'Email',
+      selector: 'email',
       sortable: true,
       width: '200px'
     },
     {
-      name: "Tên đăng nhập",
-      selector: "username",
+      name: 'Tên đăng nhập',
+      selector: 'username',
       sortable: true,
       width: '180px'
     },
     {
-      name: "Quyền",
-      selector: "role",
+      name: 'Quyền',
+      selector: 'role',
       sortable: true,
       width: '100px',
       cell: (row) => {
         return (
           <>
-            <div> {row.role === 3 && "Người dùng"} </div>
-            <div> {row.role === 2 && "Quản trị viên"} </div>
-            <div> {row.role === 1 && "Admin"} </div>
-            {/* <div> {row.role === 4 && } </div> */}
+            <div> {row.role === 3 && 'Người dùng'} </div>
+            <div> {row.role === 2 && 'Quản trị viên'} </div>
+            <div> {row.role === 1 && 'Admin'} </div>
+            <div> {row.role === 4 && 'Blocked' } </div>
           </>
         )
       }
     },
     {
-      name: "Cấp quyền",
+      name: 'Cấp quyền',
       width: '250px',
+      // eslint-disable-next-line react/display-name
       cell: (row) => {
         return (
           <div style={{ display: 'flex', alignItems: 'center' }} >
@@ -106,10 +73,6 @@ const UsersPage = (props) => {
                   value: 3,
                   label: 'User'
                 },
-                {
-                  value: 1,
-                  label: 'Admin'
-                },
               ]}
               value={roleObject[row.username]}
               onChange={(e) => grantRightsUser(e, row)}
@@ -122,7 +85,7 @@ const UsersPage = (props) => {
       left: true
     },
     {
-      name: "",
+      name: '',
       width: '400px',
       cell: (row) => {
         return (
@@ -138,53 +101,63 @@ const UsersPage = (props) => {
       }
     }
   ];
+  const [roleObject, setRoleObject] = useState({})
+  const [textSearchValue, setTextSearchValue] = useState('');
+  const [currentRow, setCurrentRow] = useState({});
+  const [modalShow, setModalShow] = useState(false);
+  const [isModalProfileUser, setIsModalProfileUser] = useState(false)
+  const [isLoading, setLoading] = useState(false);
+  const [modalShowRole, setModalShowRole] = useState(false)
+  const [currentRoleId, setCurrentRoleId] = useState('')
+  const [roleCurrent, setRoleCurrent] = useState({})
+  const [users, setUsers] = useState([])
+  const params = parse(props.location.search);
+  const [amount, setAmount] = useState(20)
+  const [page, setPage] = useState(1)
+  const [role, setRole] = useState(3)
+  if (!params.role) {
+    params.role = "1"
+  }
+  if (!params.page) {
+    params.page = "1";
+  }
+  if (!params.limit) {
+    params.amount = "8";
+  }
+  const [privilegeUser, setPrivilegeUser] = useState({ value: params.role, label: formatAdmin(+params.role) })
 
   useEffect(() => {
-    listUsersRole(amount, page, role)
-      .then(repsonse => {
-        console.log(repsonse)
-        setUsers([...users])
-      })
-  }, [])
+    // console.log(params)
+    listUsersRole(params)
+      .then(repsonse => setUsers([...repsonse.data.message]))
+  }, [props.location.search])
 
   const showProfile = row => {
     setIsModalProfileUser(true)
   }
-  const acceptsRole = (row) => {
-    setModalShowRole(true);
-    setCurrentRoleId(row.username)
-  }
+
 
   const active = (row) => {
     const item = users.find((u) => u.id === row.id)
     item.role = 3
     setUsers([...users])
     const active = { username: row.username, role: 3 }
-    // grantUser(active)
+    grantUser(active)
   }
-  
-  const _destroy = () => {
-    console.log(currentRow.username)
-    const block = { username: currentRow.username, role: 4 }
-    const item = users.find((u) => u.id === currentRow.id)
-    item.role = 4
-    // grantUser(block)
-    setUsers([...users])
-    setModalShow(false)
-  }
-  const destroy = row => {
-    setCurrentRow(row)
-    setModalShow(true)
-  }
+
+ 
   const onSearchChange = e => {
     e.preventDefault()
     setTextSearchValue(e.target.value)
   }
   const onSearchSubmit = e => {
     e.preventDefault()
-    console.log(privilegeUser, textSearchValue)
-    // listUsersRole({ amount: 20, page: 1, role: privilegeUser.value })
-    //   .then(response => setUsers([...response]))
+    // params.role =  privilegeUser.value
+    // console.log(props.)
+    params.role = privilegeUser.value
+    props.history.push(`?role=${params.role}&page=1&amount=${params.amount}`);
+    // listUsersRole(params)
+    //   .then(repsonse => setUsers([...repsonse.data.message]))
   }
 
   const grantRightsUser = (e, row) => {
@@ -192,18 +165,34 @@ const UsersPage = (props) => {
     setRoleCurrent({ username: row.username, role: e.value })
     // console.log({ username: row.username, role: e.value })
   }
+  const acceptsRole = (row) => {
+    setModalShowRole(true);
+    setCurrentRoleId(row.username)
+  }
   const _acceptsRole = (e) => {
     setModalShowRole(false)
     console.log(roleCurrent)
+    const item = users.find((u) => u.username === roleCurrent.username)
+    item.role = roleObject[item.username].value
+    setUsers([...users])
     setRoleObject({ [roleCurrent.username]: false })
-    // grantUser(roleCurrent)
-    //   .then(response => {
-    //     console.log(response.data)
-    //     const item = users.find((u) => u.id === response.data.id)
-    //     item.role = response.data.role
-    //     setUsers([...users])
-    //   })
-
+    grantUser(roleCurrent)
+      .then(response => {
+        console.log(response.data)
+      })
+  }
+  const _destroy = () => {
+    console.log(currentRow.username)
+    const block = { username: currentRow.username, role: 4 }
+    const item = users.find((u) => u.id === currentRow.id)
+    item.role = 4
+    grantUser(block)
+    setUsers([...users])
+    setModalShow(false)
+  }
+  const destroy = row => {
+    setCurrentRow(row)
+    setModalShow(true)
   }
   const changeSearchRole = (e) => {
     console.log(e)
