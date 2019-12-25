@@ -156,27 +156,29 @@ const RequestsPage = (props) => {
         </div>
       </Navbar> */}
       <Modal show={isModalProfileUser} centered onHide={() => showModalDetail(false)}>
-        <Form.Group as={Col}>
-          <Form.Label className="title-weight-400">Tên service:</Form.Label>
-          <Form.Control value={requestDetail.name} disabled={true} onChange={e => console.log(e)} />
-        </Form.Group>
-        <Form.Group as={Col}>
-          <Form.Label className="title-weight-400">Nội dung:</Form.Label>
-          <Form.Control value={requestDetail.content} disabled={true} onChange={e => console.log(e)} />
-        </Form.Group>
-        <Form.Group as={Col}>
-          <Form.Label className="title-weight-400">Địa chỉ:</Form.Label>
-          <Form.Control value={requestDetail.street_address} disabled={true} onChange={e => console.log(e)} />
-        </Form.Group>
-        <Form.Group as={Col}>
-          <Form.Label className="title-weight-400">Số điện thoại :</Form.Label>
-          <Form.Control value={requestDetail.mobile} disabled={true} onChange={e => console.log(e)} />
-        </Form.Group>
-        <Form.Group as={Col}>
-          <Form.Label className="title-weight-400">Loại dịch vụ :</Form.Label>
-          <Form.Control value={kindService(requestDetail.service_id)} disabled={true} onChange={e => console.log(e)} />
-        </Form.Group> 
-
+        {!!requestDetail.name ? <>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Tên service:</Form.Label>
+            <Form.Control value={requestDetail.name} disabled={true} onChange={e => console.log(e)} />
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Nội dung:</Form.Label>
+            <Form.Control value={requestDetail.content} disabled={true} onChange={e => console.log(e)} />
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Địa chỉ:</Form.Label>
+            <Form.Control value={requestDetail.street_address} disabled={true} onChange={e => console.log(e)} />
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Số điện thoại :</Form.Label>
+            <Form.Control value={requestDetail.mobile} disabled={true} onChange={e => console.log(e)} />
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label className="title-weight-400">Loại dịch vụ :</Form.Label>
+            <Form.Control value={kindService(requestDetail.service_id)} disabled={true} onChange={e => console.log(e)} />
+          </Form.Group>
+        </> :
+          <p>Không tìm thấy chi tiết</p>}
       </Modal>
       <TableWithLoading
         className="style-table-customer"
