@@ -17,9 +17,9 @@ export const serviceRequest = ({ name, prop_table_name }) => axios.get('/service
 export const getRequestUser = (page = 1, amount = 8) => {
   return axios.get(`/services/requests/?amount=${amount}&page=${page}`)
 }
-// export const approveService = (id, service_new_id, service_old_id) => {
-//   return axios.get(`/services/request/approve/?service_old_id=${service_old_id}&service_new_id=${service_new_id}&id=${id}`)
-// }
+export const getRequestService = (service_new_id) => {
+  return axios.get(`/services/${service_new_id}`)
+}
 export const approveService = (id, service_new_id, service_old_id) => {
   return axios.post('/services/approve', {
     id, service_new_id, service_old_id
@@ -58,3 +58,5 @@ export const getServiceTrans = (amount = 8, page = 1) => {
 export const searchService = (amount = 8, page = 1, keyword) => {
   return axios.get(`/services/search?amount=${amount}&page=${page}&keyword=${keyword}`)
 }
+
+// export const getDetail

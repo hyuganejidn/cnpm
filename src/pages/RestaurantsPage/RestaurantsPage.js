@@ -57,34 +57,34 @@ function RestaurantsPage(props) {
     width: '180px',
     center: true,
   },
-  {
-    name: '',
-    // width: 200,
-    cell: (row) => {
-      return (
-        <div className="">
-          {/* <Button
-            variant="info"
-            className="btn-margin-right btn-pd btn"
-            onClick={() =>
-              props.history.push(`/admin/restaurants/edit/${row.id}`)
-            }
-          >
-            Sửa <GoTools />
-          </Button> */}
-          <Button
-            variant="danger"
-            className="btn-pd btn"
-            onClick={() => {
-              return destroy(row);
-            }}
-          >
-            Ẩn
-          </Button>
-        </div>
-      )
-    }
-  },
+  // {
+  //   name: '',
+  //   // width: 200,
+  //   cell: (row) => {
+  //     return (
+  //       <div className="">
+  //         {/* <Button
+  //           variant="info"
+  //           className="btn-margin-right btn-pd btn"
+  //           onClick={() =>
+  //             props.history.push(`/admin/restaurants/edit/${row.id}`)
+  //           }
+  //         >
+  //           Sửa <GoTools />
+  //         </Button> */}
+  //         <Button
+  //           variant="danger"
+  //           className="btn-pd btn"
+  //           onClick={() => {
+  //             return destroy(row);
+  //           }}
+  //         >
+  //           Ẩn
+  //         </Button>
+  //       </div>
+  //     )
+  //   }
+  // },
     // {
     //   name: "User requset",
     //   width: 170,

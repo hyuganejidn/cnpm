@@ -50,34 +50,34 @@ function AttractionsPage(props) {
     width: '150px',
     center: true,
   },
-  {
-    name: '',
-    // width: 200,
-    cell: (row) => {
-      return (
-        <div className="">
-          {/* <Button
-            variant="info"
-            className="btn-margin-right btn-pd btn"
-            onClick={() =>
-              props.history.push(`/admin/attractions/edit/${row.id}`)
-            }
-          >
-            Sửa <GoTools />
-          </Button> */}
-          <Button
-            variant="danger"
-            className="btn-pd btn"
-            onClick={() => {
-              return destroy(row);
-            }}
-          >
-            Ẩn
-          </Button>
-        </div>
-      )
-    }
-  },
+    // {
+    //   name: '',
+    //   // width: 200,
+    //   cell: (row) => {
+    //     return (
+    //       <div className="">
+    //         {/* <Button
+    //           variant="info"
+    //           className="btn-margin-right btn-pd btn"
+    //           onClick={() =>
+    //             props.history.push(`/admin/attractions/edit/${row.id}`)
+    //           }
+    //         >
+    //           Sửa <GoTools />
+    //         </Button> */}
+    //         <Button
+    //           variant="danger"
+    //           className="btn-pd btn"
+    //           onClick={() => {
+    //             return destroy(row);
+    //           }}
+    //         >
+    //           Ẩn
+    //         </Button>
+    //       </div>
+    //     )
+    //   }
+    // },
     // {
     //   name: 'User report',
     //   width: 200,

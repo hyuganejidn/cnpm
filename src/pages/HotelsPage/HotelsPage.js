@@ -34,6 +34,7 @@ function HotelsPage(props) {
     sortable: true,
     width: '180px',
     center: true,
+    wrap: true
   },
   {
     name: 'Giá tiền',
@@ -41,40 +42,41 @@ function HotelsPage(props) {
     sortable: true,
     width: '180px',
     center: true,
+    wrap: true
   }, {
     name: 'Tiện nghi',
     selector: 'property_amenities',
     sortable: true,
-    width: '180px',
+    width: '300px',
     center: true,
   },
-  {
-    name: '',
-    cell: (row) => {
-      return (
-        <div className="">
-          {/* <Button
-              variant="info"
-              className="btn-margin-right btn-pd btn"
-              onClick={() =>
-                props.history.push(`/admin/hotels/edit/${row.id}`)
-              }
-            >
-              Sửa <GoTools />
-            </Button> */}
-          <Button
-            variant="danger"
-            className="btn-pd btn"
-            onClick={() => {
-              return destroy(row);
-            }}
-          >
-            Ẩn
-            </Button>
-        </div>
-      )
-    }
-  },
+    // {
+    //   name: '',
+    //   cell: (row) => {
+    //     return (
+    //       <div className="">
+    //         {/* <Button
+    //             variant="info"
+    //             className="btn-margin-right btn-pd btn"
+    //             onClick={() =>
+    //               props.history.push(`/admin/hotels/edit/${row.id}`)
+    //             }
+    //           >
+    //             Sửa <GoTools />
+    //           </Button> */}
+    //         <Button
+    //           variant="danger"
+    //           className="btn-pd btn"
+    //           onClick={() => {
+    //             return destroy(row);
+    //           }}
+    //         >
+    //           Ẩn
+    //           </Button>
+    //       </div>
+    //     )
+    //   }
+    // },
     // {
     //   name: 'User report',
     //   width: 200,
