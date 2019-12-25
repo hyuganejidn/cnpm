@@ -116,32 +116,27 @@ function RestaurantsPage(props) {
   const [restaurants, setRestaurants] = useState([])
   const [currentRow, setCurrentRow] = useState({});
   const [modalShow, setModalShow] = useState(false);
-  let params = queryString.parse(props.location.search);
-  console.log('aaaa')
-  if (!params.keyword) {
-    console.log(params.keyword)
-    console.log(true)
-    params.keyword = ""
-  }
+  const params = queryString.parse(props.location.search);
   if (!params.page) {
-    params.page = "1";
+    params.page = '1';
   }
   if (!params.amount) {
     params.amount = "8";
   }
-  const [textSearchValue, setTextSearchValue] = useState('');
+  if (!params.keyword) {
+    params.keyword = ""
+  }
+  const [textSearchValue, setTextSearchValue] = useState(params.keyword);
 
   useEffect(() => {
-    console.log('asda')
-    console.log(params, "params")
     setLoading(true)
-    getServiceRes(params.amount, params.page, params.keyword)
+    getServiceRes(8, 1)
       .then(response => {
-        console.log(response.data.message, '@@@@@')
+        console.log(response.data.message)
         setRestaurants([...response.data.message])
       })
       .finally(() => setLoading(false))
-  }, [props.location.search])
+  }, [])
 
   const _destroy = () => {
     setModalShow(false);
@@ -152,18 +147,17 @@ function RestaurantsPage(props) {
   };
   const onSearchSubmit = e => {
     e.preventDefault();
-    console.log(textSearchValue)
-    console.log(params.keyword)
+    searchService(8, 1, textSearchValue)
+      .then(response => {
+        console.log(response.data.message)
+        setRestaurants([...response.data.message])
+      })
     props.history.push(`?page=1&amount=${params.amount}&keywork=${textSearchValue}`);
   };
   const onSearchChange = e => {
-    // e.preventDefault();
-    // console.log(e.target.value)
-    console.log(params)
-    // params = { ...params, ['keyword']: e.target.value }
+    e.preventDefault();
     params.keyword = e.target.value;
-    console.log(params.keyword, 'keyword')
-    setTextSearchValue(e.target.value);
+    setTextSearchValue(params.keyword);
   };
   return (
     <div>

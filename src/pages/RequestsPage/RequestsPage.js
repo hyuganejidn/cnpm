@@ -114,7 +114,7 @@ const RequestsPage = (props) => {
   return (
     <div>
       <h1>Quản lý requests</h1>
-      <Navbar className="justify-content-between">
+      {/* <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
@@ -129,7 +129,7 @@ const RequestsPage = (props) => {
             </Button>
           </Form>
         </div>
-      </Navbar>
+      </Navbar> */}
       <Modal show={isModalProfileUser} centered onHide={() => showModalDetail(false)}>
       </Modal>
       <TableWithLoading

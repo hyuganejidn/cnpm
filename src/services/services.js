@@ -45,11 +45,11 @@ export const createServiceTrans = ({ name, content, street_address, extended_add
 export const getServiceHotel = (amount = 8, page = 1) => {
   return axios.get(`/services/categories/1?amount=${amount}&page=${page}`)
 }
-export const getServiceRes = (amount, page, keyword) => {
-  return axios.get(`/services/categories/2?amount=${amount}&page=${page}&keyword=${keyword}`)
+export const getServiceRes = (amount, page) => {
+  return axios.get(`/services/categories/2?amount=${amount}&page=${page}`)
 }
-export const getServiceAtt = (amount = 8, page = 1, keyword) => {
-  return axios.get(`/services/categories/3?amount=${amount}&page=${page}&keyword=${keyword}`)
+export const getServiceAtt = (page = 1, amount = 8) => {
+  return axios.get(`/services/categories/3?amount=${amount}&page=${page}`)
 }
 export const getServiceTrans = (amount = 8, page = 1) => {
   return axios.get(`/services/categories/4?amount=${amount}&page=${page}`)

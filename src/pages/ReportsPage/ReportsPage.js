@@ -101,7 +101,7 @@ const ReportPage = (props) => {
   return (
     <div>
       <h1>Quản lý reports</h1>
-      <Navbar className="justify-content-between">
+      {/* <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
@@ -116,7 +116,7 @@ const ReportPage = (props) => {
             </Button>
           </Form>
         </div>
-      </Navbar>
+      </Navbar> */}
       <Modal show={isModalProfileUser} centered onHide={() => showModalDetail(false)}>
       </Modal>
       <TableWithLoading

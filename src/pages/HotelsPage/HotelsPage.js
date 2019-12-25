@@ -10,7 +10,7 @@ import '../../styles/ButtonStyle.css'
 import '../../styles/LabelStyle.css'
 import '../../styles/page/RestaurantsPage/RestaurantsPage.css'
 import { TableWithLoading, ConfirmModal } from '../../components'
-import { getServiceHotel } from '../../services';
+import { getServiceHotel, searchService } from '../../services';
 
 function HotelsPage(props) {
   const columns = [{
@@ -47,34 +47,34 @@ function HotelsPage(props) {
     sortable: true,
     width: '180px',
     center: true,
-  }
-    // {
-    //   name: '',
-    //   cell: (row) => {
-    //     return (
-    //       <div className="">
-    //         <Button
-    //           variant="info"
-    //           className="btn-margin-right btn-pd btn"
-    //           onClick={() =>
-    //             props.history.push(`/admin/hotels/edit/${row.id}`)
-    //           }
-    //         >
-    //           Sửa <GoTools />
-    //         </Button>
-    //         <Button
-    //           variant="danger"
-    //           className="btn-pd btn"
-    //           onClick={() => {
-    //             return destroy(row);
-    //           }}
-    //         >
-    //           Ẩn
-    //         </Button>
-    //       </div>
-    //     )
-    //   }
-    // },
+  },
+  {
+    name: '',
+    cell: (row) => {
+      return (
+        <div className="">
+          {/* <Button
+              variant="info"
+              className="btn-margin-right btn-pd btn"
+              onClick={() =>
+                props.history.push(`/admin/hotels/edit/${row.id}`)
+              }
+            >
+              Sửa <GoTools />
+            </Button> */}
+          <Button
+            variant="danger"
+            className="btn-pd btn"
+            onClick={() => {
+              return destroy(row);
+            }}
+          >
+            Ẩn
+            </Button>
+        </div>
+      )
+    }
+  },
     // {
     //   name: 'User report',
     //   width: 200,
@@ -108,19 +108,24 @@ function HotelsPage(props) {
       .finally(() => setLoading(false))
   }, [])
   const _destroy = () => {
+    setModalShow(false);
   };
   const destroy = row => {
     setCurrentRow(row);
     setModalShow(true);
   };
   const onSearchSubmit = e => {
-    // e.preventDefault();
-    // props.history.push(`?page=1&limit=${params.limit}&q=${textSearchValue}`);
+    e.preventDefault();
+    // searchService(8, 1, textSearchValue)
+    //   .then(response => {
+    //     console.log(response.data.message)
+    //     setHotels([...response.data.message])
+    //   })
+    props.history.push(`?page=1&limit=8&keywork=${textSearchValue}`);
   };
   const onSearchChange = e => {
-    // e.preventDefault();
-    // params.q = e.target.value;
-    // setTextSearchValue(params.q);
+    e.preventDefault();
+    setTextSearchValue(e.target.value);
   };
   return (
     <div>

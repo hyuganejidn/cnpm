@@ -89,7 +89,7 @@ const BlogsPage = (props) => {
   return (
     <div>
       <h1>Quản Lý Blogs</h1>
-      <Navbar className="justify-content-between">
+      {/* <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
@@ -104,7 +104,7 @@ const BlogsPage = (props) => {
             </Button>
           </Form>
         </div>
-      </Navbar>
+      </Navbar> */}
       <TableWithLoading
         className="style-table-customer"
         isLoading={isLoading}
