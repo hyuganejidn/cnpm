@@ -47,8 +47,21 @@ function HotelsPage(props) {
     name: 'Tiện nghi',
     selector: 'property_amenities',
     sortable: true,
-    width: '300px',
+    width: '250px',
     center: true,
+  },
+  {
+    name: "",
+    width: 170,
+    cell: (row) => {
+      return (
+        <Link to={`/admin/hotels/detail/${row.service_id}`}>
+          <Button variant="success" className="btn-padding-9 btn-add-tablet">
+            Chi tiết
+          </Button>
+        </Link>
+      )
+    }
   },
     // {
     //   name: '',
@@ -169,21 +182,17 @@ function HotelsPage(props) {
         isLoading={isLoading}
         columns={columns}
         data={hotesls}
-        pagination={true}
-        paginationServer={true}
-        paginationDefaultPage={2}
-        paginationTotalRows={20}
-        paginationPerPage={10}
+       
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
-        
+
         onChangePage={page => {
           console.log(page)
         }}
         onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
           console.log(currentRowsPerPage, currentPage)
         }}
-        paginationRowsPerPageOptions={[20, 50, 100]}
+       
       />
     </div>
 

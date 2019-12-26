@@ -1,5 +1,5 @@
 import React from 'react'
-import { HotelsNew, HotelsPage, HotelsRequestsUser, HotelsReportsUser } from '../HotelsPage'
+import { HotelsNew, HotelsPage, HotelsRequestsUser, DetailHotels, HotelsReportsUser } from '../HotelsPage'
 import { PrivateRoute } from '../../components/'
 
 function HotelsRoute({ match }) {
@@ -9,7 +9,7 @@ function HotelsRoute({ match }) {
       <PrivateRoute path={`${match.path}/new`} exact component={HotelsNew} />
       <PrivateRoute path={`${match.path}/requests`} exact component={HotelsRequestsUser} />
       <PrivateRoute path={`${match.path}/reports`} exact component={HotelsReportsUser} />
-
+      <PrivateRoute path={`${match.path}/detail/:id`} exact component={DetailHotels} />
     </div>
   )
 }

@@ -50,6 +50,19 @@ function AttractionsPage(props) {
     width: '150px',
     center: true,
   },
+  {
+    name: "",
+    width: 170,
+    cell: (row) => {
+      return (
+        <Link to={`/admin/attractions/detail/${row.service_id}`}>
+          <Button variant="success" className="btn-padding-9 btn-add-tablet">
+            Chi tiết
+          </Button>
+        </Link>
+      )
+    }
+  },
     // {
     //   name: '',
     //   // width: 200,
@@ -162,7 +175,7 @@ function AttractionsPage(props) {
         paginationPerPage={10}
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
-        
+
         clearSelectedRows={true}
         onChangePage={page => {
           console.log(page)
@@ -170,7 +183,7 @@ function AttractionsPage(props) {
         onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
           console.log(currentRowsPerPage, currentPage)
         }}
-        paginationRowsPerPageOptions={[20, 50, 100]}
+       
       />
     </div>
   );

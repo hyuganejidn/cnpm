@@ -5,7 +5,10 @@ import AttractionsRoute from './AttractionsRoute'
 import AttractionsRequestUser from './AttractionsRequestUser'
 import AttractionsReportsUser from './AttractionsReportsUser'
 import EditAttractions from './EditAttractions'
+import DetailAttractions from './DetailAttractions'
+
+
 export {
   AttractionsPage, AttractionsRoute, AttractionsForm, AttractionsNew,
-  AttractionsRequestUser, AttractionsReportsUser, EditAttractions
+  AttractionsRequestUser, AttractionsReportsUser, EditAttractions, DetailAttractions
 }

@@ -260,11 +260,7 @@ const UsersPage = (props) => {
         isLoading={isLoading}
         columns={columns}
         data={users}
-        pagination={true}
-        paginationServer={true}
-        paginationDefaultPage={2}
-        paginationTotalRows={20}
-        paginationPerPage={10}
+       
         noDataComponent='Không có dữ liệu'
         onChangePage={page => {
           console.log(page)
@@ -272,7 +268,7 @@ const UsersPage = (props) => {
         onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
           console.log(currentRowsPerPage, currentPage)
         }}
-        paginationRowsPerPageOptions={[20, 50, 100]}
+       
       />
     </div>
   )

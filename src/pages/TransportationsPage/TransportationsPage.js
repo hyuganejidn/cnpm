@@ -21,6 +21,13 @@ function TransportationsForm(props) {
     wrap: true
   },
   {
+    name: 'Nội dung',
+    selector: 'content',
+    sortable: true,
+    width: '170px',
+    wrap: true
+  },
+  {
     name: 'Số điện thoại',
     selector: 'phone_number',
     sortable: true,
@@ -33,6 +40,19 @@ function TransportationsForm(props) {
     sortable: true,
     width: '250px',
     wrap: true
+  },
+  {
+    name: "",
+    width: 170,
+    cell: (row) => {
+      return (
+        <Link to={`/admin/transportations/detail/${row.service_id}`}>
+          <Button variant="success" className="btn-padding-9 btn-add-tablet">
+            Chi tiết
+          </Button>
+        </Link>
+      )
+    }
   },
   // {
   //   name: '',
@@ -174,7 +194,7 @@ function TransportationsForm(props) {
         onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
           console.log(currentRowsPerPage, currentPage)
         }}
-        paginationRowsPerPageOptions={[20, 50, 100]}
+       
       />
     </div>
 

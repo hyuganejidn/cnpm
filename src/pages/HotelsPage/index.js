@@ -4,6 +4,7 @@ import HotelsForm from './HotelsForm'
 import HotelsRoute from './HotelsRoute'
 import HotelsRequestsUser from './HotelsRequestsUser'
 import HotelsReportsUser from './HotelsReportsUser'
+import DetailHotels from './DetailHotels'
 export {
-  HotelsPage, HotelsRoute, HotelsForm, HotelsNew, HotelsRequestsUser, HotelsReportsUser
+  HotelsPage, HotelsRoute, HotelsForm, HotelsNew, HotelsRequestsUser, DetailHotels, HotelsReportsUser
 }

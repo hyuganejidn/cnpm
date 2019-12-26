@@ -85,32 +85,32 @@ function RestaurantsPage(props) {
   //     )
   //   }
   // },
-    // {
-    //   name: "User requset",
-    //   width: 170,
-    //   cell: (row) => {
-    //     return (
-    //       <Link to="/admin/restaurants/reports">
-    //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
-    //           Requests
-    //         </Button>
-    //       </Link>
-    //     )
-    //   }
-    // },
-    // {
-    //   name: "User report",
-    //   width: 170,
-    //   cell: (row) => {
-    //     return (
-    //       <Link to="/admin/restaurants/reports">
-    //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
-    //           Hiển thị<IoIosAddCircle />
-    //         </Button>
-    //       </Link>
-    //     )
-    //   }
-    // },
+  // {
+  //   name: "User requset",
+  //   width: 170,
+  //   cell: (row) => {
+  //     return (
+  //       <Link to="/admin/restaurants/reports">
+  //         <Button variant="success" className="btn-padding-9 btn-add-tablet">
+  //           Requests
+  //         </Button>
+  //       </Link>
+  //     )
+  //   }
+  // },
+  {
+    name: "",
+    width: 170,
+    cell: (row) => {
+      return (
+        <Link to={`/admin/restaurants/detail/${row.service_id}`}>
+          <Button variant="success" className="btn-padding-9 btn-add-tablet">
+            Chi tiết
+          </Button>
+        </Link>
+      )
+    }
+  },
   ]
   const [isLoading, setLoading] = useState(false);
   const [restaurants, setRestaurants] = useState([])
@@ -198,23 +198,23 @@ function RestaurantsPage(props) {
         isLoading={isLoading}
         columns={columns}
         data={restaurants}
-        pagination={true}
-        paginationServer={true}
-        paginationDefaultPage={2}
-        paginationTotalRows={20}
-        paginationPerPage={10}
+        // pagination={true}
+        // paginationServer={true}
+        // paginationDefaultPage={2}
+        // paginationTotalRows={20}
+        // paginationPerPage={10}
         striped={true}
         highlightOnHover={true}
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
-        
-        onChangePage={page => {
-          console.log(page)
-        }}
-        onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
-          console.log(currentRowsPerPage, currentPage)
-        }}
-        paginationRowsPerPageOptions={[20, 50, 100]}
+
+      // onChangePage={page => {
+      //   console.log(page)
+      // }}
+      // onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
+      //   console.log(currentRowsPerPage, currentPage)
+      // }}
+      //
       />
     </div >
   );

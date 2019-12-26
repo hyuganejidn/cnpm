@@ -76,16 +76,12 @@ function AttractionsReportedUser(props) {
         isLoading={isLoading}
         columns={columns}
         data={requests}
-        pagination={true}
-        paginationServer={true}
-        paginationDefaultPage={2}
-        paginationTotalRows={20}
-        paginationPerPage={10}
+       
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
         
         clearSelectedRows={true}
-        paginationRowsPerPageOptions={[20, 50, 100]}
+       
         onChangePage={page => {
           console.log(page)
         }}

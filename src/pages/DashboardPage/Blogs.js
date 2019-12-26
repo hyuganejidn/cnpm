@@ -110,11 +110,7 @@ const BlogsPage = (props) => {
         isLoading={isLoading}
         columns={columns}
         data={blogs}
-        pagination={true}
-        paginationServer={true}
-        paginationDefaultPage={2}
-        paginationTotalRows={20}
-        paginationPerPage={10}
+       
         noDataComponent='Không có dữ liệu'
         onChangePage={page => {
           console.log(page)
@@ -122,7 +118,7 @@ const BlogsPage = (props) => {
         onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
           console.log(currentRowsPerPage, currentPage)
         }}
-        paginationRowsPerPageOptions={[20, 50, 100]}
+       
       />
     </div>
   )
