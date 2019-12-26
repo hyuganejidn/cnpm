@@ -22,7 +22,7 @@ const UsersPage = (props) => {
   const columns = [
     {
       name: 'Tên đầy đủ',
-      selector: 'fullName',
+      selector: 'fullname',
       sortable: true,
       width: '200px'
     },
@@ -49,7 +49,7 @@ const UsersPage = (props) => {
             <div> {row.role === 3 && 'Người dùng'} </div>
             <div> {row.role === 2 && 'Quản trị viên'} </div>
             <div> {row.role === 1 && 'Admin'} </div>
-            <div> {row.role === 4 && 'Blocked' } </div>
+            <div> {row.role === 4 && 'Blocked'} </div>
           </>
         )
       }
@@ -115,6 +115,7 @@ const UsersPage = (props) => {
   const [amount, setAmount] = useState(20)
   const [page, setPage] = useState(1)
   const [role, setRole] = useState(3)
+  const [user, setUser] = useState({})
   if (!params.role) {
     params.role = "1"
   }
@@ -129,10 +130,14 @@ const UsersPage = (props) => {
   useEffect(() => {
     // console.log(params)
     listUsersRole(params)
-      .then(repsonse => setUsers([...repsonse.data.message]))
+      .then(repsonse => {
+        console.log(repsonse.data.message)
+        setUsers([...repsonse.data.message])
+      })
   }, [props.location.search])
 
   const showProfile = row => {
+    setUser(row)
     setIsModalProfileUser(true)
   }
 
@@ -145,7 +150,7 @@ const UsersPage = (props) => {
     grantUser(active)
   }
 
- 
+
   const onSearchChange = e => {
     e.preventDefault()
     setTextSearchValue(e.target.value)
@@ -180,6 +185,7 @@ const UsersPage = (props) => {
       .then(response => {
         console.log(response.data)
       })
+      .then(r => window.location.reload())
   }
   const _destroy = () => {
     console.log(currentRow.username)
@@ -245,13 +251,13 @@ const UsersPage = (props) => {
       </Navbar>
       <Modal show={isModalProfileUser} centered onHide={() => setIsModalProfileUser(false)}>
         <Form.Group as={Col} lg="6">
-          <Form.Label className="title-weight-400">Tên đăng nhập:</Form.Label>
+          <Form.Label className="title-weight-400">Tên đăng nhập:  {user.username}</Form.Label>
         </Form.Group>
         <Form.Group as={Col} lg="6">
-          <Form.Label className="title-weight-400">Tên đầy đủ:</Form.Label>
+          <Form.Label className="title-weight-400">Tên đầy đủ:  {user.fullname}</Form.Label>
         </Form.Group>
         <Form.Group as={Col} lg="6">
-          <Form.Label className="title-weight-400">Email:</Form.Label>
+          <Form.Label className="title-weight-400">Email:  {user.email}</Form.Label>
           {/* <Form.Control type="email" name="email" placeholder="Email" value={accountUser.email} onChange={(e) => onChange(e, 'email')} /> */}
         </Form.Group>
       </Modal>
@@ -260,7 +266,7 @@ const UsersPage = (props) => {
         isLoading={isLoading}
         columns={columns}
         data={users}
-       
+
         noDataComponent='Không có dữ liệu'
         onChangePage={page => {
           console.log(page)
@@ -268,7 +274,7 @@ const UsersPage = (props) => {
         onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
           console.log(currentRowsPerPage, currentPage)
         }}
-       
+
       />
     </div>
   )
