@@ -164,8 +164,7 @@ function TransportationsForm(props) {
         paginationDefaultPage={2}
         paginationTotalRows={20}
         persistTableHead={true}
-        selectableRows={true}
-        clearSelectedRows={true}
+        
         clearSelectedRows={true}
         paginationPerPage={10}
         noDataComponent='Không có dữ liệu'

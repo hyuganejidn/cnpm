@@ -34,10 +34,16 @@ const kindService = (status) => {
 const RequestsPage = (props) => {
   // console.log()
   const columns = [{
-    name: 'ID User',
-    selector: 'author_id',
+    name: 'Tên người dùng',
+    selector: 'fullname',
     sortable: true,
-    width: '100px'
+    width: '180px'
+  },
+  {
+    name: 'Tên dịch vụ',
+    selector: 'name',
+    sortable: true,
+    width: '180px'
   },
   {
     name: 'Id dịch vụ mới',

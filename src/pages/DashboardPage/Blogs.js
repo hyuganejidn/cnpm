@@ -28,7 +28,7 @@ const BlogsPage = (props) => {
     },
     {
       name: 'Tổng quát',
-      selector: 'email',
+      selector: 'overview',
       sortable: true,
       width: '200px'
     },

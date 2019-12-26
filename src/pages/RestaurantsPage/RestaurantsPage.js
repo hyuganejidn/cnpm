@@ -198,7 +198,6 @@ function RestaurantsPage(props) {
         isLoading={isLoading}
         columns={columns}
         data={restaurants}
-        isLoading={isLoading}
         pagination={true}
         paginationServer={true}
         paginationDefaultPage={2}
@@ -208,8 +207,7 @@ function RestaurantsPage(props) {
         highlightOnHover={true}
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
-        selectableRows={true}
-        clearSelectedRows={true}
+        
         onChangePage={page => {
           console.log(page)
         }}

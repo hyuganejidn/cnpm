@@ -84,8 +84,7 @@ function RestaurantsReportsUser(props) {
         paginationPerPage={10}
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
-        selectableRows={true}
-        clearSelectedRows={true}
+        
         clearSelectedRows={true}
         paginationRowsPerPageOptions={[20, 50, 100]}
         onChangePage={page => {

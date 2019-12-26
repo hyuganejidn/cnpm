@@ -176,8 +176,7 @@ function HotelsPage(props) {
         paginationPerPage={10}
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
-        selectableRows={true}
-        clearSelectedRows={true}
+        
         onChangePage={page => {
           console.log(page)
         }}

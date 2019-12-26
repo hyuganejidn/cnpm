@@ -18,10 +18,16 @@ const fomratStatus = (status) => {
 const ReportPage = (props) => {
   // console.log()
   const columns = [{
-    name: 'ID User',
-    selector: 'author_id',
+    name: 'Tên người dùng',
+    selector: 'fullname',
     sortable: true,
-    width: '100px'
+    width: '180px'
+  },
+  {
+    name: 'Tên dịch vụ',
+    selector: 'name',
+    sortable: true,
+    width: '180px'
   },
   {
     name: 'ID reports',
@@ -34,12 +40,7 @@ const ReportPage = (props) => {
     selector: 'status',
     sortable: true,
     width: '150px'
-  }, {
-    name: 'Id service',
-    selector: 'service_id',
-    sortable: true,
-    width: '130px'
-  }, {
+  },  {
     name: 'Thời gian',
     selector: 'time',
     sortable: true,
