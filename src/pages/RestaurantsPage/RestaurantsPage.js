@@ -130,7 +130,7 @@ function RestaurantsPage(props) {
 
   useEffect(() => {
     setLoading(true)
-    getServiceRes(8, 1)
+    getServiceRes(100, 1)
       .then(response => {
         console.log(response.data.message)
         setRestaurants([...response.data.message])
@@ -147,7 +147,7 @@ function RestaurantsPage(props) {
   };
   const onSearchSubmit = e => {
     e.preventDefault();
-    searchService(8, 1, textSearchValue)
+    searchService(100, 1, textSearchValue)
       .then(response => {
         console.log(response.data.message)
         setRestaurants([...response.data.message])

@@ -168,15 +168,9 @@ function AttractionsPage(props) {
         isLoading={isLoading}
         columns={columns}
         data={attractions}
-        pagination={true}
-        paginationServer={true}
-        paginationDefaultPage={2}
-        paginationTotalRows={20} s
-        paginationPerPage={10}
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
 
-        clearSelectedRows={true}
         onChangePage={page => {
           console.log(page)
         }}

@@ -14,7 +14,7 @@ export const serviceCategory = (category, service_id) => axios.get(`/services/${
 
 export const serviceRequest = ({ name, prop_table_name }) => axios.get('/services/requests/', { name, prop_table_name })
 
-export const getRequestUser = (page = 1, amount = 8) => {
+export const getRequestUser = (page = 1, amount = 100) => {
   return axios.get(`/services/requests/?amount=${amount}&page=${page}`)
 }
 export const getRequestService = (service_new_id) => {
@@ -42,20 +42,20 @@ export const createServiceTrans = ({ name, content, street_address, extended_add
 }
 // https/backend-66hv4qgtdq-an.a.run.app/api/services/requests/?amount=8&page=1
 //hotel:1, res: 2, attract: 3, trans:4
-export const getServiceHotel = (amount = 8, page = 1) => {
+export const getServiceHotel = (amount = 100, page = 1) => {
   return axios.get(`/services/categories/1?amount=${amount}&page=${page}`)
 }
-export const getServiceRes = (amount, page) => {
+export const getServiceRes = (amount=100, page) => {
   return axios.get(`/services/categories/2?amount=${amount}&page=${page}`)
 }
-export const getServiceAtt = (page = 1, amount = 8) => {
+export const getServiceAtt = (page = 1, amount = 100) => {
   return axios.get(`/services/categories/3?amount=${amount}&page=${page}`)
 }
-export const getServiceTrans = (amount = 8, page = 1) => {
+export const getServiceTrans = (amount = 100, page = 1) => {
   return axios.get(`/services/categories/4?amount=${amount}&page=${page}`)
 }
 
-export const searchService = (amount = 8, page = 1, keyword) => {
+export const searchService = (amount = 100, page = 1, keyword) => {
   return axios.get(`/services/search?amount=${amount}&page=${page}&keyword=${keyword}`)
 }
 

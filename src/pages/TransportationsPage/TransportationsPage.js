@@ -54,34 +54,34 @@ function TransportationsForm(props) {
       )
     }
   },
-  // {
-  //   name: '',
-  //   // width: 200,
-  //   cell: (row) => {
-  //     return (
-  //       <div className="">
-  //         {/* <Button
-  //           variant="info"
-  //           className="btn-margin-right btn-pd btn"
-  //           onClick={() =>
-  //             props.history.push(`/admin/transportations/edit/${row.id}`)
-  //           }
-  //         >
-  //           Sửa <GoTools />
-  //         </Button> */}
-  //         <Button
-  //           variant="danger"
-  //           className="btn-pd btn"
-  //           onClick={() => {
-  //             return destroy(row);
-  //           }}
-  //         >
-  //           Ẩn
-  //         </Button>
-  //       </div>
-  //     )
-  //   }
-  // },
+    // {
+    //   name: '',
+    //   // width: 200,
+    //   cell: (row) => {
+    //     return (
+    //       <div className="">
+    //         {/* <Button
+    //           variant="info"
+    //           className="btn-margin-right btn-pd btn"
+    //           onClick={() =>
+    //             props.history.push(`/admin/transportations/edit/${row.id}`)
+    //           }
+    //         >
+    //           Sửa <GoTools />
+    //         </Button> */}
+    //         <Button
+    //           variant="danger"
+    //           className="btn-pd btn"
+    //           onClick={() => {
+    //             return destroy(row);
+    //           }}
+    //         >
+    //           Ẩn
+    //         </Button>
+    //       </div>
+    //     )
+    //   }
+    // },
     // {
     //   name: 'User report',
     //   width: 200,
@@ -179,22 +179,8 @@ function TransportationsForm(props) {
         isLoading={isLoading}
         columns={columns}
         data={transportations}
-        pagination={true}
-        paginationServer={true}
-        paginationDefaultPage={2}
-        paginationTotalRows={20}
-        persistTableHead={true}
-        
-        clearSelectedRows={true}
-        paginationPerPage={10}
         noDataComponent='Không có dữ liệu'
-        onChangePage={page => {
-          console.log(page)
-        }}
-        onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
-          console.log(currentRowsPerPage, currentPage)
-        }}
-       
+
       />
     </div>
 

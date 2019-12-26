@@ -123,7 +123,7 @@ const UsersPage = (props) => {
     params.page = "1";
   }
   if (!params.limit) {
-    params.amount = "8";
+    params.amount = "100";
   }
   const [privilegeUser, setPrivilegeUser] = useState({ value: params.role, label: formatAdmin(+params.role) })
 

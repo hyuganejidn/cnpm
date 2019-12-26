@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-export const listReports = (page, amount) => {
+export const listReports = (page, amount=100) => {
   return axios.get(`/reports?page=${page}&amount=${amount}`)
 }
 
