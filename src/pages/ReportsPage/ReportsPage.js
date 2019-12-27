@@ -18,35 +18,35 @@ const fomratStatus = (status) => {
 const ReportPage = (props) => {
   // console.log()
   const columns = [{
-    name: 'Tên người dùng',
+    name: 'User',
     selector: 'fullname',
     sortable: true,
     width: '180px'
   },
   {
-    name: 'Tên dịch vụ',
+    name: 'Service',
     selector: 'name',
     sortable: true,
     width: '180px'
   },
   {
-    name: 'ID reports',
+    name: 'ID Reports',
     selector: 'id',
     sortable: true,
     width: '100px'
   },
   {
-    name: 'Trạng thái',
+    name: 'Status',
     selector: 'status',
     sortable: true,
     width: '150px'
   },  {
-    name: 'Thời gian',
+    name: 'Time',
     selector: 'time',
     sortable: true,
     width: '200px'
   }, {
-    name: 'Lý do',
+    name: 'Reason',
     selector: 'reason',
     sortable: true,
     width: '200px'
@@ -57,7 +57,7 @@ const ReportPage = (props) => {
     cell: (row) => {
       return (
         <div className="ml-20 group-btn-customer">
-          {row.status !== "Chấp nhận" && < Button variant="success" onClick={() => _acceptsRole(row)} className="btn-margin btn-act  btn-pd btn-width">Xác nhận</Button>}
+          {row.status !== "Chấp nhận" && < Button variant="success" onClick={() => _acceptsRole(row)} className="btn-margin btn-act  btn-pd btn-width">Approve</Button>}
         </div >
       );
     }
@@ -101,7 +101,7 @@ const ReportPage = (props) => {
   }
   return (
     <div>
-      <h1>Quản lý reports</h1>
+      <h1>Reports Management</h1>
       {/* <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>

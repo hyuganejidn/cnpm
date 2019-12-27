@@ -134,7 +134,7 @@ function AttractionsPage(props) {
   };
   return (
     <div>
-      <h1>Attractions</h1>
+      <h1>Attractions Management</h1>
       <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>

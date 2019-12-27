@@ -77,7 +77,7 @@ const UsersPage = (props) => {
               value={roleObject[row.username]}
               onChange={(e) => grantRightsUser(e, row)}
             ></Select>
-            <Button variant="success" disabled={!roleObject[row.username]} onClick={() => acceptsRole(row)} className="btn-margin btn-act  btn-pd btn-width">Xác nhận</Button>
+            <Button variant="success" disabled={!roleObject[row.username]} onClick={() => acceptsRole(row)} className="btn-margin btn-act  btn-pd btn-width">Approve</Button>
           </div >
 
         )
@@ -91,11 +91,11 @@ const UsersPage = (props) => {
         return (
           <div className="ml-20 group-btn-customer">
             {row.role === 4 ? (
-              <Button variant="success" onClick={() => active(row)} className="btn-margin btn-act  btn-pd btn-width">Hoạt Động <FaUserCheck /></Button>
+              <Button variant="success" onClick={() => active(row)} className="btn-margin btn-act  btn-pd btn-width">Active <FaUserCheck /></Button>
             ) : (
-                <Button variant="danger" onClick={() => destroy(row)} className="btn-margin  btn-pd btn-width">Vô Hiệu Hóa <FaUserAltSlash /></Button>
+                <Button variant="danger" onClick={() => destroy(row)} className="btn-margin  btn-pd btn-width">Block <FaUserAltSlash /></Button>
               )}
-            <Button variant="success" onClick={() => showProfile(row)} className="btn-margin btn-act  btn-pd btn-width">Chi tiết<FaUserCheck /></Button>
+            <Button variant="success" onClick={() => showProfile(row)} className="btn-margin btn-act  btn-pd btn-width">View<FaUserCheck /></Button>
           </div>
         );
       }

@@ -21,7 +21,7 @@ function TransportationsForm(props) {
     wrap: true
   },
   {
-    name: 'Nội dung',
+    name: 'Content',
     selector: 'content',
     sortable: true,
     width: '170px',
@@ -144,7 +144,7 @@ function TransportationsForm(props) {
   return (
     <div>
       <ConfirmModal show={modalShow} onConfirm={_destroy} confirmtext="Bạn có chắc chắnẩn không?" onHide={() => setModalShow(false)} />
-      <h1>Transportations</h1>
+      <h1>Transportations Management</h1>
       <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>

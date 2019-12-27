@@ -34,47 +34,41 @@ const kindService = (status) => {
 const RequestsPage = (props) => {
   // console.log()
   const columns = [{
-    name: 'Tên người dùng',
+    name: "Name",
     selector: 'fullname',
     sortable: true,
     width: '180px'
   },
   {
-    name: 'Tên dịch vụ',
+    name: 'Service',
     selector: 'name',
     sortable: true,
-    width: '180px'
+    width: '150px'
   },
   {
-    name: 'Id dịch vụ mới',
+    name: 'Id Service New',
     selector: 'service_new_id',
     sortable: true,
-    width: '100px'
+    width: '150px'
   },
   {
-    name: 'Tên dịch vụ',
-    selector: 'name',
-    sortable: true,
-    width: '180px'
-  },
-  {
-    name: 'ID request',
+    name: 'ID Request',
     selector: 'id',
     sortable: true,
     width: '100px'
   },
   {
-    name: 'Trạng thái',
+    name: 'Status',
     selector: 'status',
     sortable: true,
     width: '150px'
   }, {
-    name: 'Loại request',
+    name: 'Kind',
     selector: 'kind',
     sortable: true,
     width: '150px'
   }, {
-    name: 'Thời gian',
+    name: 'Time',
     selector: 'time',
     sortable: true,
     width: '200px'
@@ -85,8 +79,8 @@ const RequestsPage = (props) => {
     cell: (row) => {
       return (
         <div className="ml-20 group-btn-customer">
-          <Button variant="info" onClick={() => getDetailRequest(row)} className="btn-margin btn-act  btn-pd btn-width">Chi tiết</Button>
-          {row.status !== "Chấp nhận" && < Button variant="success" onClick={() => acceptsRole(row)} className="btn-margin btn-act  btn-pd btn-width">Xác nhận</Button>}
+          <Button variant="info" onClick={() => getDetailRequest(row)} className="btn-margin btn-act  btn-pd btn-width">View</Button>
+          {row.status !== "Chấp nhận" && < Button variant="success" onClick={() => acceptsRole(row)} className="btn-margin btn-act  btn-pd btn-width">Approve</Button>}
         </div >
       );
     }
@@ -144,7 +138,7 @@ const RequestsPage = (props) => {
   // }
   return (
     <div>
-      <h1>Quản lý requests</h1>
+      <h1>Requests Management</h1>
       {/* <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>

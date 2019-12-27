@@ -145,7 +145,7 @@ function HotelsPage(props) {
     <div>
       <ConfirmModal show={modalShow} onConfirm={_destroy} confirmtext="Bạn có chắc chắnẩn không?" onHide={() => setModalShow(false)}
       />
-      <h1>Hotels</h1>
+      <h1>Hotels Management</h1>
       <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>
@@ -164,7 +164,7 @@ function HotelsPage(props) {
         {/* <div>
           <Link to="/admin/hotels/requests">
             <Button variant="success" className="btn-padding-9 btn-add-tablet">
-              Requests
+              Requests cloudstudyjam11
             </Button>
           </Link>
           <Link to="/admin/hotels/new">

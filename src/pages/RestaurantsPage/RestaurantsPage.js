@@ -162,7 +162,7 @@ function RestaurantsPage(props) {
     <div>
       <ConfirmModal show={modalShow} onConfirm={_destroy} confirmtext="Bạn có chắc chắn ẩn không?" onHide={() => setModalShow(false)} />
 
-      <h1>Restaurants</h1>
+      <h1>Restaurants  Management</h1>
       <Navbar className="justify-content-between">
         <div>
           <Form inline onSubmit={onSearchSubmit}>

@@ -93,7 +93,7 @@ const Header = props => {
             </div>
           </NavItem>
         </LinkContainer> */}
-        <LinkContainer to="/admin/blogs" exact>
+        {/* <LinkContainer to="/admin/blogs" exact>
           <NavItem eventKey="">
             <NavIcon>
               <FaUserAlt />
@@ -104,7 +104,7 @@ const Header = props => {
               </LinkContainer>
             </div>
           </NavItem>
-        </LinkContainer>
+        </LinkContainer> */}
 
         <LinkContainer to="/admin/requests" exact>
           <NavItem eventKey="">
