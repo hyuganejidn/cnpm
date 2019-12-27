@@ -150,7 +150,7 @@ const RequestsPage = (props) => {
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
               type="text"
-              placeholder="Nhập từ khoá tìm kiếm"
+              placeholder="Search"
               value={textSearchValue}
               onChange={onSearchChange}
               className="mr-sm-2 search-width-staff"
@@ -172,11 +172,11 @@ const RequestsPage = (props) => {
             <Form.Control value={requestDetail.content} disabled={true} onChange={e => console.log(e)} />
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Địa chỉ:</Form.Label>
+            <Form.Label className="title-weight-400">Address:</Form.Label>
             <Form.Control value={requestDetail.street_address} disabled={true} onChange={e => console.log(e)} />
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Số điện thoại :</Form.Label>
+            <Form.Label className="title-weight-400">Number phone :</Form.Label>
             <Form.Control value={requestDetail.mobile} disabled={true} onChange={e => console.log(e)} />
           </Form.Group>
           <Form.Group as={Col}>

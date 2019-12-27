@@ -51,8 +51,7 @@ function RestaurantsRequestUser(props) {
           setUsernameRequest(row.fullname)
           setContentRequestText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel diam quis dui dignissim interdum id et dui. Quisque eget aliquam augue, vel accumsan velit. Nam erat libero, egestas maximus elit in, faucibus tristique velit. Vivamus risus nisi, auctor vitae pellentesque et, pulvinar ut diam. Cras nec mauris tellus. Praesent vehicula nibh consectetur tempor vehicula. Vivamus ultrices enim sapien, non condimentum mi eleifend posuere. Nulla in felis tristique, pulvinar nunc et, feugiat ipsum. Mauris lobortis tincidunt magna, malesuada placerat justo pharetra sed. Nunc hendrerit laoreet ante, ut ultricies ante bibendum sed. Proin ut sodales metus, eu lobortis ligula. Pellentesque massa eros, posuere ac ante vel, fringilla tincidunt elit. Ae')
         }}>
-          Chi tiết
-        </Button>
+         View        </Button>
       )
     }
   },]

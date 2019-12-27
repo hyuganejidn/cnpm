@@ -25,11 +25,11 @@ function DetailHotels(props) {
         <Breadcrumb.Item active>Chi tiết nhà hàng</Breadcrumb.Item>
       </Breadcrumb>
       <section>
-        <p>Tên khách sạn:<b> {places.name}</b></p>
+        <p>Name:<b> {places.name}</b></p>
         <p>Nội dung:  <b>{places.content}</b></p>
-        <p>Số điện thoại: <b>{places.mobile}</b></p>
-        <p>Địa chỉ:<b>{places.street_address + " " + places.extended_address}</b>   </p>
-        <p>Tiện nghi:  <b>{places.property_amenities}</b></p>
+        <p>Number phone: <b>{places.mobile}</b></p>
+        <p>Address:<b>{places.street_address + " " + places.extended_address}</b>   </p>
+        <p>Property Amenities:  <b>{places.property_amenities}</b></p>
         <p>Giá tièn:<b> {places.price}</b></p>
         <p>Đánh giá:  <b>{places.total_rating}</b></p>
       </section>

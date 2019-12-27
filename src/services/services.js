@@ -29,8 +29,8 @@ export const createServiceHotel = ({ name, content, street_address, extended_add
   return axios.post('/services/request', { name, content, street_address, extended_address, mobile, property_amenities, price, category_id })
 }
 
-export const createServiceRes = ({ name, content, street_address, extended_address, mobile, food_category, special_diet, meal, category_id = 2 }) => {
-  return axios.post('/services/request', { name, content, street_address, extended_address, mobile, food_category, special_diet, meal, category_id })
+export const createServiceRes = ({ name, content, street_address, extended_address, mobile, food_category, special_diet, Meal, category_id = 2 }) => {
+  return axios.post('/services/request', { name, content, street_address, extended_address, mobile, food_category, special_diet, Meal, category_id })
 }
 
 export const createServiceAtt = ({ name, content, street_address, extended_address, mobile, note, category_id = 3 }) => {

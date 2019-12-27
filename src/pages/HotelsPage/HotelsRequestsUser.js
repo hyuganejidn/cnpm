@@ -46,8 +46,7 @@ function HotelsRequestsUser(props) {
     cell: (row) => {
       return (
         <Button variant="info" type="submit" className="btn btn-padding-7" onClick={() => detailFeedback(row)}>
-          Chi tiết
-        </Button>
+         View        </Button>
       )
     }
   },]

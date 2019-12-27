@@ -14,7 +14,7 @@ import { getServiceHotel, searchService } from '../../services';
 
 function HotelsPage(props) {
   const columns = [{
-    name: 'Tên khách sạn',
+    name: 'Name',
     selector: 'name',
     sortable: true,
     width: '200px',
@@ -22,14 +22,14 @@ function HotelsPage(props) {
     hide: 'sm'
   },
   {
-    name: 'Địa chỉ',
+    name: 'Address',
     selector: 'street_address',
     sortable: true,
     width: '200px',
     wrap: true
   },
   {
-    name: 'Số điện thoại',
+    name: 'Number phone',
     selector: 'phone',
     sortable: true,
     width: '180px',
@@ -37,14 +37,14 @@ function HotelsPage(props) {
     wrap: true
   },
   {
-    name: 'Giá tiền',
+    name: 'Price',
     selector: 'price',
     sortable: true,
     width: '180px',
     center: true,
     wrap: true
   }, {
-    name: 'Tiện nghi',
+    name: 'Property Amenities',
     selector: 'property_amenities',
     sortable: true,
     width: '250px',
@@ -57,8 +57,7 @@ function HotelsPage(props) {
       return (
         <Link to={`/admin/hotels/detail/${row.service_id}`}>
           <Button variant="success" className="btn-padding-9 btn-add-tablet">
-            Chi tiết
-          </Button>
+            View          </Button>
         </Link>
       )
     }
@@ -146,14 +145,13 @@ function HotelsPage(props) {
     <div>
       <ConfirmModal show={modalShow} onConfirm={_destroy} confirmtext="Bạn có chắc chắnẩn không?" onHide={() => setModalShow(false)}
       />
-      <h1>Quản lý khách sạn</h1>
+      <h1>Hotels</h1>
       <Navbar className="justify-content-between">
         <div>
-          <label className="search-explain">Bạn có thể tìm kiếm bằng cách nhập tên món ăn</label>
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
               type="text"
-              placeholder="Nhập từ khoá tìm kiếm"
+              placeholder="Search"
               onChange={onSearchChange}
               className="mr-sm-2"
               value={textSearchValue}
@@ -182,7 +180,7 @@ function HotelsPage(props) {
         isLoading={isLoading}
         columns={columns}
         data={hotesls}
-       
+
         noDataComponent='Không có dữ liệu'
         persistTableHead={true}
 
@@ -192,7 +190,7 @@ function HotelsPage(props) {
         onChangeRowsPerPage={(currentRowsPerPage, currentPage) => {
           console.log(currentRowsPerPage, currentPage)
         }}
-       
+
       />
     </div>
 

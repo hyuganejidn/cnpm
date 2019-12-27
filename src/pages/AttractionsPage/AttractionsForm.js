@@ -25,7 +25,7 @@ const formValidator = new FormValidator([
     field: 'street_address',
     method: validator.isEmpty,
     validWhen: false,
-    message: 'Vui lòng nhập địa chỉ'
+    message: 'Vui lòng nhập Address'
   },
   {
     field: 'mobile',
@@ -92,8 +92,8 @@ const HotelsForm = (props) => {
       <Row>
         <Col >
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Tên nhà hàng:</Form.Label>
-            <Form.Control placeholder="Tên nhà hàng" value={place.name} onChange={(e) => onChange(e, 'name')} />
+            <Form.Label className="title-weight-400">Name:</Form.Label>
+            <Form.Control placeholder="Name" value={place.name} onChange={(e) => onChange(e, 'name')} />
             <div className="error">
               {validationResult.name && validationResult.name.isInvalid && validationResult.name.message}
             </div>
@@ -106,33 +106,33 @@ const HotelsForm = (props) => {
             </div>
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Địa chỉ:</Form.Label>
-            <Form.Control placeholder="Địa chỉ" value={place.street_address} onChange={(e) => onChange(e, 'street_address')} rows='4' />
+            <Form.Label className="title-weight-400">Address:</Form.Label>
+            <Form.Control placeholder="Address" value={place.street_address} onChange={(e) => onChange(e, 'street_address')} rows='4' />
             <div className="error">
               {validationResult.street_address && validationResult.street_address.isInvalid && validationResult.street_address.message}
             </div>
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Địa chỉ chi tiết* :</Form.Label>
-            <Form.Control placeholder="Địa chỉ chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
+            <Form.Label className="title-weight-400">Address chi tiết* :</Form.Label>
+            <Form.Control placeholder="Address chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
           </Form.Group>
           <Form.Group as={Col} lg="6">
-            <Form.Label className="title-weight-400">Số Điện Thoại* :</Form.Label>
-            <Form.Control placeholder="Số Điện Thoại" type='number' value={place.mobile} className='input-number' onChange={(e) => onChange(e, 'mobile')} />
+            <Form.Label className="title-weight-400">Number phone* :</Form.Label>
+            <Form.Control placeholder="Number phone" type='number' value={place.mobile} className='input-number' onChange={(e) => onChange(e, 'mobile')} />
             <div className="error">
               {validationResult.mobile && validationResult.mobile.isInvalid && validationResult.mobile.message}
             </div>
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Địa chỉ chi tiết* :</Form.Label>
-            <Form.Control placeholder="Địa chỉ chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
+            <Form.Label className="title-weight-400">Address chi tiết* :</Form.Label>
+            <Form.Control placeholder="Address chi tiết" value={place.extended_address} className='input-number' onChange={(e) => onChange(e, 'extended_address')} />
             <div className="error">
               {validationResult.extended_address && validationResult.extended_address.isInvalid && validationResult.extended_address.message}
             </div>
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label className="title-weight-400">Ghi chú* :</Form.Label>
-            <Form.Control placeholder="Ghi chú" type='number' value={place.food_category} className='input-number' onChange={(e) => onChange(e, 'food_category')} />
+            <Form.Label className="title-weight-400">Note* :</Form.Label>
+            <Form.Control placeholder="Note" type='number' value={place.food_category} className='input-number' onChange={(e) => onChange(e, 'food_category')} />
           </Form.Group>
         </Col>
 

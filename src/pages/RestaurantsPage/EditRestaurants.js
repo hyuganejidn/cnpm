@@ -7,7 +7,7 @@ import { getService } from '../../services'
 function RestaurantsEdit(props) {
   const id = props.match.params.id
   console.log(id, '@id')
-  const [restaurants, setRestaurants] = useState({ name: '', content: '', street_address: '', extended_address: '', mobile: '', food_category: '', special_diet: '', meal: '' })
+  const [restaurants, setRestaurants] = useState({ name: '', content: '', street_address: '', extended_address: '', mobile: '', food_category: '', special_diet: '', Meal: '' })
   // const onCreate = food => {
   //   // submit api and redirect to ingredients page
   //   return createFood(food).then(() => props.history.push("/admin/foods"));

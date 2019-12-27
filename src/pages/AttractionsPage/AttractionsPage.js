@@ -23,28 +23,28 @@ function AttractionsPage(props) {
     wrap: true
   },
   {
-    name: 'Địa chỉ',
+    name: 'Address',
     selector: 'street_address',
     sortable: true,
     width: '250px',
     wrap: true
   },
   {
-    name: 'Chi tiết',
+    name: 'Extended Address',
     selector: 'extended_address',
     sortable: true,
     width: '180px',
     wrap: true
   },
   {
-    name: 'Số điện thoại',
+    name: 'Number phone',
     selector: 'mobile',
     sortable: true,
     width: '150px',
     center: true,
   },
   {
-    name: 'Ghi chú',
+    name: 'Note',
     selector: 'note',
     sortable: true,
     width: '150px',
@@ -57,7 +57,7 @@ function AttractionsPage(props) {
       return (
         <Link to={`/admin/attractions/detail/${row.service_id}`}>
           <Button variant="success" className="btn-padding-9 btn-add-tablet">
-            Chi tiết
+            View
           </Button>
         </Link>
       )
@@ -140,7 +140,7 @@ function AttractionsPage(props) {
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
               type="text"
-              placeholder="Nhập từ khoá tìm kiếm"
+              placeholder="Search"
               onChange={onSearchChange}
               className="mr-sm-2"
               value={textSearchValue}

@@ -28,7 +28,7 @@ function TransportationsForm(props) {
     wrap: true
   },
   {
-    name: 'Số điện thoại',
+    name: 'Number phone',
     selector: 'phone_number',
     sortable: true,
     width: '170px',
@@ -48,8 +48,7 @@ function TransportationsForm(props) {
       return (
         <Link to={`/admin/transportations/detail/${row.service_id}`}>
           <Button variant="success" className="btn-padding-9 btn-add-tablet">
-            Chi tiết
-          </Button>
+            View          </Button>
         </Link>
       )
     }
@@ -151,7 +150,7 @@ function TransportationsForm(props) {
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
               type="text"
-              placeholder="Nhập từ khoá tìm kiếm"
+              placeholder="Search"
               onChange={onSearchChange}
               className="mr-sm-2"
               value={textSearchValue}

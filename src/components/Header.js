@@ -26,7 +26,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/users" exact>
-                <Nav.Link className="navlink-style">Quản lý người dùng</Nav.Link>
+                <Nav.Link className="navlink-style">Users</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>
@@ -39,7 +39,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/restaurants" exact>
-                <Nav.Link className="navlink-style">Quản lý nhà hàng coffee</Nav.Link>
+                <Nav.Link className="navlink-style" >Restaurants</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>
@@ -51,7 +51,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/hotels" exact>
-                <Nav.Link className="navlink-style">Quản lý khách sạn</Nav.Link>
+                <Nav.Link className="navlink-style">Hotels</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>
@@ -63,7 +63,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/attractions" exact>
-                <Nav.Link className="navlink-style">Attraction</Nav.Link>
+                <Nav.Link className="navlink-style">Attractions</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>
@@ -75,7 +75,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/transportations" exact>
-                <Nav.Link className="navlink-style">Transportation</Nav.Link>
+                <Nav.Link className="navlink-style">Transportations</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>
@@ -100,7 +100,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/blogs" exact>
-                <Nav.Link className="navlink-style">Quản lý blogs</Nav.Link>
+                <Nav.Link className="navlink-style">Blogs</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>
@@ -113,7 +113,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/requests" exact>
-                <Nav.Link className="navlink-style">Yêu cầu người dùng</Nav.Link>
+                <Nav.Link className="navlink-style">Requets User</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>
@@ -126,7 +126,7 @@ const Header = props => {
             </NavIcon>
             <div className="sidebar-nav">
               <LinkContainer to="/admin/reports" exact>
-                <Nav.Link className="navlink-style">Quản lý report</Nav.Link>
+                <Nav.Link className="navlink-style">Reports</Nav.Link>
               </LinkContainer>
             </div>
           </NavItem>

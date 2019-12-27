@@ -107,7 +107,7 @@ const ReportPage = (props) => {
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
               type="text"
-              placeholder="Nhập từ khoá tìm kiếm"
+              placeholder="Search"
               value={textSearchValue}
               onChange={onSearchChange}
               className="mr-sm-2 search-width-staff"

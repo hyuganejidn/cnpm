@@ -21,7 +21,7 @@ const formatAdmin = (role) => {
 const UsersPage = (props) => {
   const columns = [
     {
-      name: 'Tên đầy đủ',
+      name: 'Full name',
       selector: 'fullname',
       sortable: true,
       width: '200px'
@@ -33,21 +33,21 @@ const UsersPage = (props) => {
       width: '200px'
     },
     {
-      name: 'Tên đăng nhập',
+      name: 'User name',
       selector: 'username',
       sortable: true,
       width: '180px'
     },
     {
-      name: 'Quyền',
+      name: 'Role',
       selector: 'role',
       sortable: true,
       width: '100px',
       cell: (row) => {
         return (
           <>
-            <div> {row.role === 3 && 'Người dùng'} </div>
-            <div> {row.role === 2 && 'Quản trị viên'} </div>
+            <div> {row.role === 3 && 'User'} </div>
+            <div> {row.role === 2 && 'Staff'} </div>
             <div> {row.role === 1 && 'Admin'} </div>
             <div> {row.role === 4 && 'Blocked'} </div>
           </>
@@ -55,7 +55,7 @@ const UsersPage = (props) => {
       }
     },
     {
-      name: 'Cấp quyền',
+      name: 'Grant Right',
       width: '250px',
       // eslint-disable-next-line react/display-name
       cell: (row) => {
@@ -209,14 +209,13 @@ const UsersPage = (props) => {
     <div>
       <ConfirmModal show={modalShow} onConfirm={_destroy} confirmtext="Bạn có chắc chắn muốn vô hiệu hoá tài khoản này không?" onHide={() => setModalShow(false)} />
       <ConfirmModal show={modalShowRole} onConfirm={_acceptsRole} confirmtext="Cấp quyền cho user này" onHide={() => setModalShowRole(false)} />
-      <h1>Quản Lý Nhân Viên</h1>
+      <h1>Users</h1>
       <Navbar className="justify-content-between">
         <div>
-          <label className="search-explain">Bạn có thể tìm kiếm bằng cách nhập tên nhân viên</label>
           <Form inline onSubmit={onSearchSubmit}>
             <FormControl
               type="text"
-              placeholder="Nhập từ khoá tìm kiếm"
+              placeholder="Search"
               value={textSearchValue}
               onChange={onSearchChange}
               className="mr-sm-2 search-width-staff"
